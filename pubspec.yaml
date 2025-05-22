@@ -27,3 +27,7 @@ flutter:
       fonts:
         - asset: assets/fonts/static/PlusJakartaSans-Regular.ttf
         - asset: assets/fonts/static/PlusJakartaSans-Medium.ttf
+    - family: poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
