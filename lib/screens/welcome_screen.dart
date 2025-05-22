@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Gap(118),
+                  Gap(100),
                   Row(
                     mainAxisAlignment:
                         MainAxisAlignment.center,
