@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/util/color.dart';
 
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                       "assets/images/ahmed.png",
                     ),
                   ),
-                  Gap(8),
+                  Gap(10),
                   Column(
                     crossAxisAlignment:
                         CrossAxisAlignment.start,
@@ -47,6 +48,27 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  Spacer(),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        100,
+                      ),
+                      color: AppColor.surface,
+                    ),
+                    width: 34,
+                    height: 34,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        "assets/images/sun.svg",
+                        colorFilter: ColorFilter.mode(
+                          AppColor.primaryText,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
