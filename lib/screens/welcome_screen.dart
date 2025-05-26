@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/screens/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -153,13 +153,13 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: () async {
                         if (_formKey.currentState!
                             .validate()) {
-                          final pref =
-                              await SharedPreferences.getInstance();
-                          pref.setString(
-                            "username",
+                          await AppLocalStorage.saveName(
                             controller.value.text,
                           );
-                          pref.setBool("onborading", true);
+                          await AppLocalStorage.saveOnboarding(
+                            true,
+                          );
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(

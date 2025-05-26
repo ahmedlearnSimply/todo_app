@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,19 +18,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _loadUserName();
-  }
-
-  void _loadUserName() async {
-    final pref = await SharedPreferences.getInstance();
-    username = await pref.getString("username");
+    loadSavedData();
     setState(() {});
   }
 
-  void _loadOnBoarding() async {
-    final pref = await SharedPreferences.getInstance();
-    kOnboarding = await pref.getBool('onborading');
-    setState(() {});
+  void loadSavedData() async {
+    final name = await AppLocalStorage.getName();
+    final onboarding =
+        await AppLocalStorage.getKOnboarding();
+
+    setState(() {
+      username = name ?? "Guest";
+      kOnboarding = onboarding ?? false;
+    });
   }
 
   @override
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Good Evening , $username",
+                        "Good Evening , ${username}",
                         style: TextStyle(
                           color: AppColor.primaryText,
                           fontFamily: 'poppins',
