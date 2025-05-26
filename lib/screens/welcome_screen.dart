@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/screens/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
   final TextEditingController controller =
       TextEditingController();
+
   final GlobalKey<FormState> _formKey =
       GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -147,9 +150,16 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                         backgroundColor: Color(0xff15B86C),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!
                             .validate()) {
+                          final pref =
+                              await SharedPreferences.getInstance();
+                          pref.setString(
+                            "username",
+                            controller.value.text,
+                          );
+                          pref.setBool("onborading", true);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

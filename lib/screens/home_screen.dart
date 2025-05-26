@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/util/color.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  HomeScreen({super.key});
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String? username;
+  bool? kOnboarding;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  void _loadUserName() async {
+    final pref = await SharedPreferences.getInstance();
+    username = await pref.getString("username");
+    setState(() {});
+  }
+
+  void _loadOnBoarding() async {
+    final pref = await SharedPreferences.getInstance();
+    kOnboarding = await pref.getBool('onborading');
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                         CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Good Evening ,Usama ",
+                        "Good Evening , $username",
                         style: TextStyle(
                           color: AppColor.primaryText,
                           fontFamily: 'poppins',
