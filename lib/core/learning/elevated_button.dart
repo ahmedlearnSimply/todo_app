@@ -9,6 +9,40 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: SizedBox(
+          height: 44,
+          width: 168,
+          child: FloatingActionButton.extended(
+            elevation: 0,
+            foregroundColor: AppColor.primaryText,
+            backgroundColor: AppColor.green,
+            icon: Icon(Icons.add, size: 18),
+
+            label: Text(
+              "Add New Task",
+              style: TextStyle(
+                fontSize: 14,
+
+                fontFamily: 'poppins',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return HomeScreen();
+                  },
+                ),
+              );
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+          ),
+        ),
         body: Center(
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
@@ -29,6 +63,7 @@ class CustomElevatedButton extends StatelessWidget {
             label: Text(
               "Add New Task",
               style: TextStyle(
+                fontSize: 14,
                 fontFamily: 'poppins',
                 fontWeight: FontWeight.w500,
               ),

@@ -22,8 +22,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: isFirstTime ? HomeScreen() : WelcomeScreen(),
-      home: CustomElevatedButton(),
+      home: isFirstTime ? HomeScreen() : WelcomeScreen(),
+      // home: CustomElevatedButton(),
     );
   }
 }
