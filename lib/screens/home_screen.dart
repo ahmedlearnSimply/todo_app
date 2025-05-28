@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -91,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Good Evening , ${username}",
+                        "Good Evening , $username",
                         style: TextStyle(
                           color: AppColor.primaryText,
                           fontFamily: 'poppins',
