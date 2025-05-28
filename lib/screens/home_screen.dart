@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/screens/add_task.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: SizedBox(
-          height: 44,
+          height: 40,
           width: 168,
           child: FloatingActionButton.extended(
             elevation: 0,
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return HomeScreen();
+                    return AddTask();
                   },
                 ),
               );
