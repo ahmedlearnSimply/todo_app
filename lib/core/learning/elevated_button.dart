@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/screens/home_screen.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({super.key});
@@ -11,10 +13,19 @@ class CustomElevatedButton extends StatelessWidget {
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
               foregroundColor: Color(0xffFFFCFC),
-              backgroundColor: Color(0xff15B86C),
+              backgroundColor: AppColor.green,
               fixedSize: Size(168, 40),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return HomeScreen();
+                  },
+                ),
+              );
+            },
             label: Text(
               "Add New Task",
               style: TextStyle(
