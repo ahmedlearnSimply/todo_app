@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class AddTask extends StatelessWidget {
@@ -7,32 +7,43 @@ class AddTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.background,
-      appBar: AppBar(
-        title: Text(
-          "New Task",
-          style: TextStyle(
-            fontSize: 20,
-            fontFamily: 'poppins',
-            fontWeight: FontWeight.w400,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColor.background,
+        appBar: AppBar(
+          title: Text(
+            "New Task",
+            style: TextStyle(
+              fontSize: 20,
+              fontFamily: 'poppins',
+              fontWeight: FontWeight.w400,
+              color: AppColor.primaryText,
+            ),
+          ),
+          iconTheme: IconThemeData(
             color: AppColor.primaryText,
           ),
+          backgroundColor: AppColor.background,
         ),
-        backgroundColor: AppColor.background,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: SvgPicture.asset(
-            "assets/images/arrowback.svg",
-            width: 16,
-            height: 16,
+        body: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Task Name",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'poppins',
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.primaryText,
+                ),
+              ),
+              Gap(8),
+            ],
           ),
-          color: AppColor.primaryText,
         ),
       ),
-      body: Column(),
     );
   }
 }
