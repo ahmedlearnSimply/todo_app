@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -130,6 +131,36 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
+                  ),
+                ],
+              ),
+
+              Gap(16),
+
+              Text(
+                "Yuhuu ,Your work Is ",
+                style: TextStyle(
+                  color: AppColor.primaryText,
+                  fontFamily: 'poppins',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 32,
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    "almost done ! ",
+                    style: TextStyle(
+                      color: AppColor.primaryText,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 32,
+                    ),
+                  ),
+                  SvgPicture.asset(
+                    "assets/images/waving_hand.svg",
+                    width: 32,
+                    height: 32,
                   ),
                 ],
               ),
