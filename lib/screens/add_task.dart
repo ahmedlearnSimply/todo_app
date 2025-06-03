@@ -238,9 +238,9 @@ class _AddTaskState extends State<AddTask> {
                         if (taskJson != null) {
                           listTasks = jsonDecode(taskJson);
                         }
-                        print("before add $listTasks");
+                        // print("before add $listTasks");
                         listTasks.add(task);
-                        print("after add $listTasks");
+                        // print("after add $listTasks");
 
                         final taskEncode = jsonEncode(
                           listTasks,

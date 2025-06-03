@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       tasks = taskAfterDecode;
     });
+    print("all tasks $tasks");
   }
 
   @override
@@ -89,106 +90,108 @@ class _HomeScreenState extends State<HomeScreen> {
 
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 21,
-                    backgroundImage: AssetImage(
-                      "assets/images/ahmed.png",
-                    ),
-                  ),
-                  Gap(10),
-                  Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Good Evening , $username",
-                        style: TextStyle(
-                          color: AppColor.primaryText,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Text(
-                        "One task at a time.One step closer. ",
-                        style: TextStyle(
-                          color: AppColor.secondaryText,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        100,
-                      ),
-                      color: AppColor.surface,
-                    ),
-                    width: 34,
-                    height: 34,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset(
-                        "assets/images/sun.svg",
-                        colorFilter: ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
-                        ),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 21,
+                      backgroundImage: AssetImage(
+                        "assets/images/ahmed.png",
                       ),
                     ),
-                  ),
-                ],
-              ),
-
-              Gap(16),
-
-              Text(
-                "Yuhuu ,Your work Is ",
-                style: TextStyle(
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 32,
+                    Gap(10),
+                    Column(
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Good Evening , $username",
+                          style: TextStyle(
+                            color: AppColor.primaryText,
+                            fontFamily: 'poppins',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          "One task at a time.One step closer. ",
+                          style: TextStyle(
+                            color: AppColor.secondaryText,
+                            fontFamily: 'poppins',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          100,
+                        ),
+                        color: AppColor.surface,
+                      ),
+                      width: 34,
+                      height: 34,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: SvgPicture.asset(
+                          "assets/images/sun.svg",
+                          colorFilter: ColorFilter.mode(
+                            AppColor.primaryText,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    "almost done ! ",
-                    style: TextStyle(
-                      color: AppColor.primaryText,
-                      fontFamily: 'poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 32,
-                    ),
-                  ),
-                  SvgPicture.asset(
-                    "assets/images/waving_hand.svg",
-                    width: 32,
-                    height: 32,
-                  ),
-                ],
-              ),
 
-              Text(
-                tasks[0],
-                style: TextStyle(
-                  color: Colors.red,
-                  fontFamily: 'poppins',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 32,
+                Gap(16),
+
+                Text(
+                  "Yuhuu ,Your work Is ",
+                  style: TextStyle(
+                    color: AppColor.primaryText,
+                    fontFamily: 'poppins',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 32,
+                  ),
                 ),
-              ),
-            ],
+                Row(
+                  children: [
+                    Text(
+                      "almost done ! ",
+                      style: TextStyle(
+                        color: AppColor.primaryText,
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 32,
+                      ),
+                    ),
+                    SvgPicture.asset(
+                      "assets/images/waving_hand.svg",
+                      width: 32,
+                      height: 32,
+                    ),
+                  ],
+                ),
+
+                Text(
+                  tasks[1]["TaskDes"],
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontFamily: 'poppins',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 32,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
