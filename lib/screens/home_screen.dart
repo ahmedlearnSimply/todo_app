@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/add_task.dart';
@@ -14,12 +17,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? username;
   bool? kOnboarding;
+  List<dynamic> tasks = [];
 
   @override
   void initState() {
     super.initState();
     loadSavedData();
-    setState(() {});
+    _loadTask();
+    // setState(() {});
   }
 
   void loadSavedData() async {
@@ -30,6 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       username = name ?? "Guest";
       kOnboarding = onboarding ?? false;
+    });
+  }
+
+  void _loadTask() async {
+    final pref = await SharedPreferences.getInstance();
+    final finalTask = pref.getString('tasks');
+    final taskAfterDecode = jsonDecode(finalTask ?? "[]");
+    setState(() {
+      tasks = taskAfterDecode;
     });
   }
 
@@ -163,6 +177,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 32,
                   ),
                 ],
+              ),
+
+              Text(
+                tasks[0],
+                style: TextStyle(
+                  color: Colors.red,
+                  fontFamily: 'poppins',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 32,
+                ),
               ),
             ],
           ),

@@ -231,17 +231,21 @@ class _AddTaskState extends State<AddTask> {
                         };
                         final pref =
                             await SharedPreferences.getInstance();
-                        final taskEncode = jsonEncode(task);
+                        final taskJson = pref.getString(
+                          'tasks',
+                        );
+                        List<dynamic> listTasks = [];
+                        if (taskJson != null) {
+                          listTasks = jsonDecode(taskJson);
+                        }
+                        print("before add $listTasks");
+                        listTasks.add(task);
+                        print("after add $listTasks");
 
-                        pref.setString("task", taskEncode);
-                        print("TaskEncode $taskEncode");
-                        final finalTask = pref.getString(
-                          'task',
+                        final taskEncode = jsonEncode(
+                          listTasks,
                         );
-                        final taskAfterDecode = jsonDecode(
-                          finalTask ?? "",
-                        );
-                        print(taskAfterDecode);
+                        pref.setString("tasks", taskEncode);
                       }
                     },
 
