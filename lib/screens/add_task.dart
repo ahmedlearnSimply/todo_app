@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class AddTask extends StatefulWidget {
@@ -217,9 +220,29 @@ class _AddTaskState extends State<AddTask> {
                       ),
                     ),
                     icon: Icon(Icons.add),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_key.currentState?.validate() ??
-                          false) {}
+                          false) {
+                        final task = <String, dynamic>{
+                          "taskName":
+                              taskNameController.text,
+                          "TaskDes": desController.text,
+                          "isHighPriority": isHighPriority,
+                        };
+                        final pref =
+                            await SharedPreferences.getInstance();
+                        final taskEncode = jsonEncode(task);
+
+                        pref.setString("task", taskEncode);
+                        print("TaskEncode $taskEncode");
+                        final finalTask = pref.getString(
+                          'task',
+                        );
+                        final taskAfterDecode = jsonDecode(
+                          finalTask ?? "",
+                        );
+                        print(taskAfterDecode);
+                      }
                     },
 
                     label: Text(
