@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? username;
   bool? kOnboarding;
-  List<dynamic> tasks = [];
+  // List<dynamic> tasks = [];
 
   @override
   void initState() {
@@ -43,15 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
     final finalTask = pref.getString('tasks');
     final taskAfterDecode = jsonDecode(finalTask ?? "[]");
     setState(() {
-      tasks = taskAfterDecode;
+      // tasks = taskAfterDecode;
     });
-    print("all tasks $tasks");
+    // print("all tasks $tasks");
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColor.background,
         floatingActionButton: SizedBox(
           height: 40,
           width: 168,
@@ -86,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        backgroundColor: AppColor.background,
 
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -182,7 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 Text(
-                  tasks[1]["TaskDes"],
+                  "tasks[1]["
+                  "]",
                   style: TextStyle(
                     color: Colors.red,
                     fontFamily: 'poppins',

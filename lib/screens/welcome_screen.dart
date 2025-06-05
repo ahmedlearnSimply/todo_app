@@ -172,16 +172,16 @@ class WelcomeScreen extends StatelessWidget {
                               true,
                             );
 
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (
-                            //       BuildContext context,
-                            //     ) {
-                            //       return HomeScreen();
-                            //     },
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (
+                                  BuildContext context,
+                                ) {
+                                  return HomeScreen();
+                                },
+                              ),
+                            );
                           }
                         },
                         child: Text(

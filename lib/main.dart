@@ -6,7 +6,7 @@ import 'package:todo_app/screens/home_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // important line for shared preferences
 
   final isFirstTime =
       await AppLocalStorage.getKOnboarding() ?? false;
@@ -22,7 +22,6 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: isFirstTime ? HomeScreen() : WelcomeScreen(),
-      // home: CustomElevatedButton(),
     );
   }
 }
