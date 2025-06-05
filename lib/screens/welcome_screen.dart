@@ -118,7 +118,6 @@ class WelcomeScreen extends StatelessWidget {
                       TextFormField(
                         controller: textController,
                         validator: (String? value) {
-                          log(value.toString().trim());
                           if (value == null ||
                               value.trim().isEmpty) {
                             return "Enter Your Full Name";
@@ -160,9 +159,7 @@ class WelcomeScreen extends StatelessWidget {
                             ).size.width,
                             50,
                           ),
-                          backgroundColor: Color(
-                            0xff15B86C,
-                          ),
+                          backgroundColor: AppColor.green,
                         ),
                         onPressed: () async {
                           if (_formKey.currentState!
@@ -170,6 +167,7 @@ class WelcomeScreen extends StatelessWidget {
                             await AppLocalStorage.saveName(
                               textController.value.text,
                             );
+                            log(textController.value.text);
                             await AppLocalStorage.saveOnboarding(
                               true,
                             );
