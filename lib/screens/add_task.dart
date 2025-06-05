@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -232,6 +233,9 @@ class _AddTaskState extends State<AddTask> {
                               desController.text,
                           isHighPriority: isHighPriority,
                         );
+                        // log(task.toJson().toString());
+                        final pref =
+                            await SharedPreferences.getInstance();
                       }
                     },
 
