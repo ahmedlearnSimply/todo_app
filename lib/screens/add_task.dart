@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class AddTask extends StatefulWidget {
@@ -225,27 +226,12 @@ class _AddTaskState extends State<AddTask> {
                       if (_formKey.currentState
                               ?.validate() ??
                           false) {
-                        final task = <String, dynamic>{
-                          "taskName":
-                              taskNameController.text,
-                          "TaskDes": desController.text,
-                          "isHighPriority": isHighPriority,
-                        };
-                        final pref =
-                            await SharedPreferences.getInstance();
-                        final taskJson = pref.getString(
-                          'tasks',
+                        final task = TaskModel(
+                          taskName: taskNameController.text,
+                          taskDescription:
+                              desController.text,
+                          isHighPriority: isHighPriority,
                         );
-                        List<dynamic> listTasks = [];
-                        if (taskJson != null) {
-                          listTasks = jsonDecode(taskJson);
-                        }
-                        listTasks.add(task);
-
-                        final taskEncode = jsonEncode(
-                          listTasks,
-                        );
-                        pref.setString("tasks", taskEncode);
                       }
                     },
 
