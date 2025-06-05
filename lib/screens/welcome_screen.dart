@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -116,6 +118,7 @@ class WelcomeScreen extends StatelessWidget {
                       TextFormField(
                         controller: textController,
                         validator: (String? value) {
+                          log(value.toString().trim());
                           if (value == null ||
                               value.trim().isEmpty) {
                             return "Enter Your Full Name";
@@ -171,16 +174,16 @@ class WelcomeScreen extends StatelessWidget {
                               true,
                             );
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (
-                                  BuildContext context,
-                                ) {
-                                  return HomeScreen();
-                                },
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (
+                            //       BuildContext context,
+                            //     ) {
+                            //       return HomeScreen();
+                            //     },
+                            //   ),
+                            // );
                           }
                         },
                         child: Text(
