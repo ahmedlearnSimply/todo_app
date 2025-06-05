@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
+import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff181818),
+        backgroundColor: AppColor.background,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
