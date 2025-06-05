@@ -22,7 +22,8 @@ class _AddTaskState extends State<AddTask> {
 
   bool isHighPriority = true;
 
-  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey =
+      GlobalKey<FormState>();
 
   //TODO : Don't Forget to dispose the controllers
   @override
@@ -56,7 +57,7 @@ class _AddTaskState extends State<AddTask> {
               vertical: 8,
             ),
             child: Form(
-              key: _key,
+              key: _formKey,
               child: Column(
                 crossAxisAlignment:
                     CrossAxisAlignment.start,
@@ -112,7 +113,7 @@ class _AddTaskState extends State<AddTask> {
                               fillColor: AppColor.surface,
                               filled: true,
                               hintText:
-                                  "Finish UI design for login screen",
+                                  "Finish Shooting Unit one",
                               hintStyle: TextStyle(
                                 fontFamily: 'poppins',
                                 color: Color(0xff6D6D6D),
@@ -167,7 +168,7 @@ class _AddTaskState extends State<AddTask> {
                               fillColor: AppColor.surface,
                               filled: true,
                               hintText:
-                                  "Finish onboarding UI and hand off to devs by Thursday.",
+                                  "From Data Structure Course at Next Friday.",
                               hintStyle: TextStyle(
                                 fontFamily: 'poppins',
                                 color: Color(0xff6D6D6D),
@@ -221,7 +222,8 @@ class _AddTaskState extends State<AddTask> {
                     ),
                     icon: Icon(Icons.add),
                     onPressed: () async {
-                      if (_key.currentState?.validate() ??
+                      if (_formKey.currentState
+                              ?.validate() ??
                           false) {
                         final task = <String, dynamic>{
                           "taskName":
@@ -238,9 +240,7 @@ class _AddTaskState extends State<AddTask> {
                         if (taskJson != null) {
                           listTasks = jsonDecode(taskJson);
                         }
-                        // print("before add $listTasks");
                         listTasks.add(task);
-                        // print("after add $listTasks");
 
                         final taskEncode = jsonEncode(
                           listTasks,
