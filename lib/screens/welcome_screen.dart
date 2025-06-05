@@ -7,7 +7,7 @@ import 'package:todo_app/screens/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
-  final TextEditingController controller =
+  final TextEditingController textController =
       TextEditingController();
 
   final GlobalKey<FormState> _formKey =
@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                         Text(
                           "Welcome To Tasky",
                           style: TextStyle(
-                            color: Color(0xffFFFCFC),
+                            color: AppColor.primaryText,
                             fontFamily: "plus",
                             fontSize: 24,
                             fontWeight: FontWeight.w400,
@@ -80,7 +80,7 @@ class WelcomeScreen extends StatelessWidget {
                     Text(
                       "Your productivity journey starts here.",
                       style: TextStyle(
-                        color: Color(0xffFFFCFC),
+                        color: AppColor.primaryText,
                         fontFamily: "plus",
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
@@ -98,7 +98,7 @@ class WelcomeScreen extends StatelessWidget {
                         Text(
                           "Full Name",
                           style: TextStyle(
-                            color: Color(0xffFFFCFC),
+                            color: AppColor.primaryText,
                             fontFamily: "poppins",
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -108,7 +108,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     Gap(8),
                     TextFormField(
-                      controller: controller,
+                      controller: textController,
                       validator: (String? value) {
                         if (value == null ||
                             value.trim().isEmpty) {
@@ -155,7 +155,7 @@ class WelcomeScreen extends StatelessWidget {
                         if (_formKey.currentState!
                             .validate()) {
                           await AppLocalStorage.saveName(
-                            controller.value.text,
+                            textController.value.text,
                           );
                           await AppLocalStorage.saveOnboarding(
                             true,
