@@ -244,7 +244,9 @@ class _AddTaskState extends State<AddTask> {
                         if (taskJson != null) {
                           taskList = jsonDecode(taskJson);
                         }
+
                         taskList.add(task.toJson());
+
                         final taskEncode = jsonEncode(
                           taskList,
                         );
@@ -253,6 +255,7 @@ class _AddTaskState extends State<AddTask> {
                           taskEncode,
                         );
                       }
+                      Navigator.pop(context);
                     },
 
                     label: Text(
