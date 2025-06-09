@@ -227,7 +227,7 @@ class _AddTaskState extends State<AddTask> {
                       if (_formKey.currentState
                               ?.validate() ??
                           false) {
-                        final task = TaskModel(
+                        TaskModel task = TaskModel(
                           taskName: taskNameController.text,
                           taskDescription:
                               desController.text,
@@ -236,6 +236,22 @@ class _AddTaskState extends State<AddTask> {
                         // log(task.toJson().toString());
                         final pref =
                             await SharedPreferences.getInstance();
+                        final taskJson = pref.getString(
+                          'tasks',
+                        );
+                        List<dynamic> taskList = [];
+
+                        if (taskJson != null) {
+                          taskList = jsonDecode(taskJson);
+                        }
+                        taskList.add(task.toJson());
+                        final taskEncode = jsonEncode(
+                          taskList,
+                        );
+                        await pref.setString(
+                          'tasks',
+                          taskEncode,
+                        );
                       }
                     },
 

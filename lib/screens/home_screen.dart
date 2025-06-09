@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/add_task.dart';
@@ -17,14 +19,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? username;
   bool? kOnboarding;
-  // List<dynamic> tasks = [];
+  List<TaskModel> allTasks = [];
 
   @override
   void initState() {
     super.initState();
     loadSavedData();
     _loadTask();
-    // setState(() {});
   }
 
   void loadSavedData() async {
@@ -41,11 +42,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void _loadTask() async {
     final pref = await SharedPreferences.getInstance();
     final finalTask = pref.getString('tasks');
-    final taskAfterDecode = jsonDecode(finalTask ?? "[]");
-    setState(() {
-      // tasks = taskAfterDecode;
-    });
-    // print("all tasks $tasks");
+    if (finalTask != null) {
+      final taskAfterDecode =
+          jsonDecode(finalTask) as List<dynamic>;
+      log(taskAfterDecode.toString());
+
+      setState(() {
+        allTasks =
+            taskAfterDecode
+                .map((e) => TaskModel.fromJson(e))
+                .toList();
+      });
+      log(allTasks.toString());
+    }
   }
 
   @override
@@ -182,8 +191,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 Text(
-                  "tasks[1]["
-                  "]",
+                  allTasks[0].taskName,
+
                   style: TextStyle(
                     color: Colors.red,
                     fontFamily: 'poppins',

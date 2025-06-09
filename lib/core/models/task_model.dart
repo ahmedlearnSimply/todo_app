@@ -9,6 +9,14 @@ class TaskModel {
     required this.isHighPriority,
   });
 
+  factory TaskModel.fromJson(Map<String, dynamic> json) {
+    return TaskModel(
+      taskName: json['taskName'],
+      taskDescription: json['taskDescription'],
+      isHighPriority: json['isHighPriority'],
+    );
+  }
+
   // Convert object to Map (for SharedPreferences)
   Map<String, dynamic> toJson() {
     return {
