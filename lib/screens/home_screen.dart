@@ -30,8 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void loadSavedData() async {
     final name = await AppLocalStorage.getName();
-    final onboarding =
-        await AppLocalStorage.getKOnboarding();
+    final onboarding = await AppLocalStorage.getKOnboarding();
 
     setState(() {
       username = name ?? "Guest";
@@ -43,15 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final pref = await SharedPreferences.getInstance();
     final finalTask = pref.getString('tasks');
     if (finalTask != null) {
-      final taskAfterDecode =
-          jsonDecode(finalTask) as List<dynamic>;
+      final taskAfterDecode = jsonDecode(finalTask) as List<dynamic>;
       log(taskAfterDecode.toString());
 
       setState(() {
-        allTasks =
-            taskAfterDecode
-                .map((e) => TaskModel.fromJson(e))
-                .toList();
+        allTasks = taskAfterDecode.map((e) => TaskModel.fromJson(e)).toList();
       });
     }
   }
@@ -72,12 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             label: Text(
               "Add New Task",
-              style: TextStyle(
-                fontSize: 14,
-
-                fontFamily: 'poppins',
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontSize: 14, fontFamily: 'poppins', fontWeight: FontWeight.w500),
             ),
 
             onPressed: () async {
@@ -91,9 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
               _loadTask();
             },
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           ),
         ),
 
@@ -104,16 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 21,
-                    backgroundImage: AssetImage(
-                      "assets/images/ahmed.png",
-                    ),
-                  ),
+                  CircleAvatar(radius: 21, backgroundImage: AssetImage("assets/images/ahmed.png")),
                   Gap(10),
                   Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Good Evening , $username",
@@ -138,9 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Spacer(),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        100,
-                      ),
+                      borderRadius: BorderRadius.circular(100),
                       color: AppColor.surface,
                     ),
                     width: 34,
@@ -149,10 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {},
                       icon: SvgPicture.asset(
                         "assets/images/sun.svg",
-                        colorFilter: ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
-                        ),
+                        colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
                       ),
                     ),
                   ),
@@ -181,89 +158,67 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 32,
                     ),
                   ),
-                  SvgPicture.asset(
-                    "assets/images/waving_hand.svg",
-                    width: 32,
-                    height: 32,
-                  ),
+                  SvgPicture.asset("assets/images/waving_hand.svg", width: 32, height: 32),
                 ],
               ),
               if (allTasks.isNotEmpty)
                 Expanded(
                   child: ListView.builder(
                     itemCount: allTasks.length,
-                    itemBuilder: (
-                      BuildContext context,
-                      int index,
-                    ) {
+                    itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8.0,
-                        ),
+                        padding: const EdgeInsets.only(top: 8.0),
                         child: Container(
                           height: 72,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: AppColor.surface,
-                            borderRadius:
-                                BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment
-                                    .spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Checkbox(
-                                value:
-                                    allTasks[index].isDone,
+                                activeColor: AppColor.green,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                value: allTasks[index].isDone,
 
-                                onChanged: (value) {
+                                onChanged: (value) async {
                                   setState(() {
-                                    value =
-                                        allTasks[index]
-                                            .isDone;
+                                    allTasks[index].isDone = value ?? false;
                                   });
+
+                                  await saveUpdatedTasks();
                                 },
                               ),
                               Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment
-                                        .center,
+                                mainAxisAlignment: MainAxisAlignment.center,
 
                                 children: [
                                   Text(
-                                    allTasks[index]
-                                        .taskName,
+                                    allTasks[index].taskName,
 
                                     style: TextStyle(
-                                      color:
-                                          AppColor
-                                              .primaryText,
+                                      color: AppColor.primaryText,
                                       fontFamily: 'poppins',
-                                      fontWeight:
-                                          FontWeight.w400,
+                                      fontWeight: FontWeight.w400,
                                       fontSize: 16,
                                     ),
                                   ),
                                   Text(
-                                    allTasks[index]
-                                        .taskName,
+                                    allTasks[index].taskName,
                                     style: TextStyle(
-                                      color:
-                                          AppColor
-                                              .secondaryText,
+                                      color: AppColor.secondaryText,
                                       fontFamily: 'poppins',
-                                      fontWeight:
-                                          FontWeight.w400,
+                                      fontWeight: FontWeight.w400,
                                       fontSize: 14,
                                     ),
                                   ),
                                 ],
                               ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.settings),
-                              ),
+                              IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
                             ],
                           ),
                         ),
@@ -276,5 +231,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> saveUpdatedTasks() async {
+    final pref = await SharedPreferences.getInstance();
+    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
+    pref.setString('tasks', jsonEncode(updatedTasks));
   }
 }
