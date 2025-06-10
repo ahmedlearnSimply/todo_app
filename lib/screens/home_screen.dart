@@ -176,49 +176,81 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Checkbox(
-                                activeColor: AppColor.green,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Checkbox(
+                                  activeColor: AppColor.green,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  value: allTasks[index].isDone,
+
+                                  onChanged: (value) async {
+                                    setState(() {
+                                      allTasks[index].isDone = value ?? false;
+                                    });
+
+                                    await saveUpdatedTasks();
+                                  },
                                 ),
-                                value: allTasks[index].isDone,
-
-                                onChanged: (value) async {
-                                  setState(() {
-                                    allTasks[index].isDone = value ?? false;
-                                  });
-
-                                  await saveUpdatedTasks();
-                                },
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              Gap(8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      allTasks[index].taskName,
 
-                                children: [
-                                  Text(
-                                    allTasks[index].taskName,
+                                      style: TextStyle(
+                                        color:
+                                            allTasks[index].isDone
+                                                ? Color(0xffA0A0A0)
+                                                : AppColor.primaryText,
+                                        fontFamily: 'poppins',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
 
-                                    style: TextStyle(
-                                      color: AppColor.primaryText,
-                                      fontFamily: 'poppins',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16,
+                                        overflow: TextOverflow.ellipsis,
+                                        decoration:
+                                            allTasks[index].isDone
+                                                ? TextDecoration.lineThrough
+                                                : TextDecoration.none,
+                                        decorationColor: Color(0xffA0A0A0),
+                                      ),
+                                      maxLines: 1,
                                     ),
-                                  ),
-                                  Text(
-                                    allTasks[index].taskName,
-                                    style: TextStyle(
-                                      color: AppColor.secondaryText,
-                                      fontFamily: 'poppins',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
+                                    Text(
+                                      allTasks[index].taskDescription,
+                                      style: TextStyle(
+                                        color:
+                                            allTasks[index].isDone
+                                                ? Color(0xffA0A0A0)
+                                                : AppColor.secondaryText,
+                                        fontFamily: 'poppins',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      maxLines: 1,
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                              IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+                              Gap(12),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.more_vert,
+                                  color:
+                                      allTasks[index].isDone
+                                          ? Color(0xffA0A0A0)
+                                          : Color(0xffC6C6C6),
+                                ),
+                              ),
+                              Gap(5),
                             ],
                           ),
                         ),
