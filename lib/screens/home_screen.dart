@@ -214,8 +214,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .spaceBetween,
                             children: [
                               Checkbox(
-                                value: true,
-                                onChanged: (onChanged) {},
+                                value:
+                                    allTasks[index].isDone,
+
+                                onChanged: (value) {
+                                  setState(() {
+                                    value =
+                                        allTasks[index]
+                                            .isDone;
+                                  });
+                                },
                               ),
                               Column(
                                 mainAxisAlignment:
