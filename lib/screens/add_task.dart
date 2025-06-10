@@ -16,16 +16,13 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
   //Some Vars
-  final TextEditingController taskNameController =
-      TextEditingController();
+  final TextEditingController taskNameController = TextEditingController();
 
-  final TextEditingController desController =
-      TextEditingController();
+  final TextEditingController desController = TextEditingController();
 
   bool isHighPriority = true;
 
-  final GlobalKey<FormState> _formKey =
-      GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   //TODO : Don't Forget to dispose the controllers
   @override
@@ -48,21 +45,15 @@ class _AddTaskState extends State<AddTask> {
                 color: AppColor.primaryText,
               ),
             ),
-            iconTheme: IconThemeData(
-              color: AppColor.primaryText,
-            ),
+            iconTheme: IconThemeData(color: AppColor.primaryText),
             backgroundColor: AppColor.background,
           ),
           body: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: SingleChildScrollView(
@@ -85,8 +76,7 @@ class _AddTaskState extends State<AddTask> {
 
                           TextFormField(
                             validator: (String? value) {
-                              if (value == null ||
-                                  value.trim().isEmpty) {
+                              if (value == null || value.trim().isEmpty) {
                                 return "Please Enter Name Of Task ";
                               }
                               return null;
@@ -100,22 +90,14 @@ class _AddTaskState extends State<AddTask> {
                             ),
 
                             decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 16,
-                                  ),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                               border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(
-                                      16,
-                                    ),
+                                borderRadius: BorderRadius.circular(16),
                                 borderSide: BorderSide.none,
                               ),
                               fillColor: AppColor.surface,
                               filled: true,
-                              hintText:
-                                  "Finish Shooting Unit one",
+                              hintText: "Finish Shooting Unit one",
                               hintStyle: TextStyle(
                                 fontFamily: 'poppins',
                                 color: Color(0xff6D6D6D),
@@ -140,8 +122,7 @@ class _AddTaskState extends State<AddTask> {
                           Gap(8),
                           TextFormField(
                             validator: (String? value) {
-                              if (value == null ||
-                                  value.trim().isEmpty) {
+                              if (value == null || value.trim().isEmpty) {
                                 return "Please Enter Description Of Task ";
                               }
                               return null;
@@ -155,22 +136,14 @@ class _AddTaskState extends State<AddTask> {
                             ),
                             maxLines: 5,
                             decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 16,
-                                  ),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                               border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(
-                                      16,
-                                    ),
+                                borderRadius: BorderRadius.circular(16),
                                 borderSide: BorderSide.none,
                               ),
                               fillColor: AppColor.surface,
                               filled: true,
-                              hintText:
-                                  "From Data Structure Course at Next Friday.",
+                              hintText: "From Data Structure Course at Next Friday.",
                               hintStyle: TextStyle(
                                 fontFamily: 'poppins',
                                 color: Color(0xff6D6D6D),
@@ -181,25 +154,20 @@ class _AddTaskState extends State<AddTask> {
                           ),
                           Gap(20),
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment
-                                    .spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 "High Priority",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'poppins',
-                                  fontWeight:
-                                      FontWeight.w400,
-                                  color:
-                                      AppColor.primaryText,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.primaryText,
                                 ),
                               ),
                               Switch(
                                 value: isHighPriority,
-                                activeTrackColor:
-                                    AppColor.green,
+                                activeTrackColor: AppColor.green,
 
                                 onChanged: (value) {
                                   setState(() {
@@ -217,28 +185,19 @@ class _AddTaskState extends State<AddTask> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: AppColor.primaryText,
                       backgroundColor: AppColor.green,
-                      fixedSize: Size(
-                        MediaQuery.of(context).size.width,
-                        40,
-                      ),
+                      fixedSize: Size(MediaQuery.of(context).size.width, 40),
                     ),
                     icon: Icon(Icons.add),
                     onPressed: () async {
-                      if (_formKey.currentState
-                              ?.validate() ??
-                          false) {
+                      if (_formKey.currentState?.validate() ?? false) {
                         TaskModel task = TaskModel(
                           taskName: taskNameController.text,
-                          taskDescription:
-                              desController.text,
+                          taskDescription: desController.text,
                           isHighPriority: isHighPriority,
                         );
                         // log(task.toJson().toString());
-                        final pref =
-                            await SharedPreferences.getInstance();
-                        final taskJson = pref.getString(
-                          'tasks',
-                        );
+                        final pref = await SharedPreferences.getInstance();
+                        final taskJson = pref.getString('tasks');
                         List<dynamic> taskList = [];
 
                         if (taskJson != null) {
@@ -247,15 +206,10 @@ class _AddTaskState extends State<AddTask> {
 
                         taskList.add(task.toJson());
 
-                        final taskEncode = jsonEncode(
-                          taskList,
-                        );
-                        await pref.setString(
-                          'tasks',
-                          taskEncode,
-                        );
+                        final taskEncode = jsonEncode(taskList);
+                        await pref.setString('tasks', taskEncode);
+                        Navigator.pop(context);
                       }
-                      Navigator.pop(context);
                     },
 
                     label: Text(
