@@ -195,7 +195,6 @@ class _AddTaskState extends State<AddTask> {
                           taskDescription: desController.text,
                           isHighPriority: isHighPriority,
                         );
-                        // log(task.toJson().toString());
                         final pref = await SharedPreferences.getInstance();
                         final taskJson = pref.getString('tasks');
                         List<dynamic> taskList = [];
