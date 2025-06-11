@@ -179,138 +179,160 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Gap(16),
 
-              if (allTasks.isNotEmpty)
-                Expanded(
-                  child:
-                      isLoading
-                          ? Center(child: CircularProgressIndicator(color: Colors.white))
-                          : ListView.separated(
-                            padding: EdgeInsets.only(bottom: 50),
-                            separatorBuilder: (BuildContext context, int index) => Gap(8),
-                            itemCount: allTasks.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Container(
-                                  height: 72,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: AppColor.surface,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Checkbox(
-                                          activeColor: AppColor.green,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4),
-                                          ),
-                                          value: allTasks[index].isDone,
-
-                                          onChanged: (value) async {
-                                            setState(() {
-                                              allTasks[index].isDone = value ?? false;
-                                            });
-
-                                            await saveUpdatedTasks();
-                                          },
-                                        ),
-                                      ),
-                                      Gap(8),
-                                      (allTasks[index].taskDescription != "")
-                                          ? Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  allTasks[index].taskName,
-
-                                                  style: TextStyle(
-                                                    color:
-                                                        allTasks[index].isDone
-                                                            ? Color(0xffA0A0A0)
-                                                            : AppColor.primaryText,
-                                                    fontFamily: 'poppins',
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
-
-                                                    overflow: TextOverflow.ellipsis,
-                                                    decoration:
-                                                        allTasks[index].isDone
-                                                            ? TextDecoration.lineThrough
-                                                            : TextDecoration.none,
-                                                    decorationColor: Color(0xffA0A0A0),
-                                                  ),
-                                                  maxLines: 1,
-                                                ),
-                                                Text(
-                                                  allTasks[index].taskDescription,
-                                                  style: TextStyle(
-                                                    color:
-                                                        allTasks[index].isDone
-                                                            ? Color(0xffA0A0A0)
-                                                            : AppColor.secondaryText,
-                                                    fontFamily: 'poppins',
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 14,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                  maxLines: 1,
-                                                ),
-                                              ],
+              allTasks.isNotEmpty
+                  ? Expanded(
+                    child:
+                        isLoading
+                            ? Center(child: CircularProgressIndicator(color: Colors.white))
+                            : ListView.separated(
+                              padding: EdgeInsets.only(bottom: 50),
+                              separatorBuilder: (BuildContext context, int index) => Gap(8),
+                              itemCount: allTasks.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Container(
+                                    height: 72,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: AppColor.surface,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Checkbox(
+                                            activeColor: AppColor.green,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4),
                                             ),
-                                          )
-                                          : Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  allTasks[index].taskName,
+                                            value: allTasks[index].isDone,
 
-                                                  style: TextStyle(
-                                                    color:
-                                                        allTasks[index].isDone
-                                                            ? Color(0xffA0A0A0)
-                                                            : AppColor.primaryText,
-                                                    fontFamily: 'poppins',
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16,
+                                            onChanged: (value) async {
+                                              setState(() {
+                                                allTasks[index].isDone = value ?? false;
+                                              });
 
-                                                    overflow: TextOverflow.ellipsis,
-                                                    decoration:
-                                                        allTasks[index].isDone
-                                                            ? TextDecoration.lineThrough
-                                                            : TextDecoration.none,
-                                                    decorationColor: Color(0xffA0A0A0),
-                                                  ),
-                                                  maxLines: 1,
-                                                ),
-                                              ],
-                                            ),
+                                              await saveUpdatedTasks();
+                                            },
                                           ),
-                                      Gap(12),
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.more_vert,
-                                          color:
-                                              allTasks[index].isDone
-                                                  ? Color(0xffA0A0A0)
-                                                  : Color(0xffC6C6C6),
                                         ),
-                                      ),
-                                      Gap(5),
-                                    ],
+                                        Gap(8),
+                                        (allTasks[index].taskDescription != "")
+                                            ? Expanded(
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    allTasks[index].taskName,
+
+                                                    style: TextStyle(
+                                                      color:
+                                                          allTasks[index].isDone
+                                                              ? Color(0xffA0A0A0)
+                                                              : AppColor.primaryText,
+                                                      fontFamily: 'poppins',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 16,
+
+                                                      overflow: TextOverflow.ellipsis,
+                                                      decoration:
+                                                          allTasks[index].isDone
+                                                              ? TextDecoration.lineThrough
+                                                              : TextDecoration.none,
+                                                      decorationColor: Color(0xffA0A0A0),
+                                                    ),
+                                                    maxLines: 1,
+                                                  ),
+                                                  Text(
+                                                    allTasks[index].taskDescription,
+                                                    style: TextStyle(
+                                                      color:
+                                                          allTasks[index].isDone
+                                                              ? Color(0xffA0A0A0)
+                                                              : AppColor.secondaryText,
+                                                      fontFamily: 'poppins',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                    maxLines: 1,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                            : Expanded(
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    allTasks[index].taskName,
+
+                                                    style: TextStyle(
+                                                      color:
+                                                          allTasks[index].isDone
+                                                              ? Color(0xffA0A0A0)
+                                                              : AppColor.primaryText,
+                                                      fontFamily: 'poppins',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 16,
+
+                                                      overflow: TextOverflow.ellipsis,
+                                                      decoration:
+                                                          allTasks[index].isDone
+                                                              ? TextDecoration.lineThrough
+                                                              : TextDecoration.none,
+                                                      decorationColor: Color(0xffA0A0A0),
+                                                    ),
+                                                    maxLines: 1,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                        Gap(12),
+                                        IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.more_vert,
+                                            color:
+                                                allTasks[index].isDone
+                                                    ? Color(0xffA0A0A0)
+                                                    : Color(0xffC6C6C6),
+                                          ),
+                                        ),
+                                        Gap(5),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
+                  )
+                  : Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text(
+                            "There is No Task ",
+
+                            style: TextStyle(
+                              color: AppColor.primaryText,
+                              fontFamily: 'poppins',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 26,
+
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            maxLines: 1,
                           ),
-                ),
+                        ),
+                      ],
+                    ),
+                  ),
             ],
           ),
         ),
