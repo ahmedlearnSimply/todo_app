@@ -121,12 +121,6 @@ class _AddTaskState extends State<AddTask> {
                           ),
                           Gap(8),
                           TextFormField(
-                            validator: (String? value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return "Please Enter Description Of Task ";
-                              }
-                              return null;
-                            },
                             controller: desController,
                             cursorColor: Colors.white,
                             style: TextStyle(
