@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/screens/home_screen.dart';
+import 'package:todo_app/screens/main_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
 
 void main() async {
@@ -22,7 +23,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isFirstTime ? HomeScreen() : WelcomeScreen(),
+      home: isFirstTime ? MainScreen() : WelcomeScreen(),
     );
   }
 }
