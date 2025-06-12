@@ -19,65 +19,67 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        elevation: 0,
-        backgroundColor: AppColor.background,
-        unselectedItemColor: AppColor.primaryText,
-        selectedItemColor: AppColor.green,
-        selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/images/home.svg",
-              colorFilter:
-                  _currentIndex == 0
-                      ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                      : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+    return SafeArea(
+      child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (int? index) {
+            setState(() {
+              _currentIndex = index ?? 0;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          elevation: 0,
+          backgroundColor: AppColor.background,
+          unselectedItemColor: AppColor.primaryText,
+          selectedItemColor: AppColor.green,
+          selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/images/home.svg",
+                colorFilter:
+                    _currentIndex == 0
+                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
+                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              ),
+              label: "Home",
             ),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/images/todo.svg",
-              colorFilter:
-                  _currentIndex == 1
-                      ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                      : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/images/todo.svg",
+                colorFilter:
+                    _currentIndex == 1
+                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
+                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              ),
+              label: "To Do",
             ),
-            label: "To Do",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/images/completed.svg",
-              colorFilter:
-                  _currentIndex == 2
-                      ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                      : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/images/completed.svg",
+                colorFilter:
+                    _currentIndex == 2
+                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
+                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              ),
+              label: "Completed",
             ),
-            label: "Completed",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/images/profile.svg",
-              colorFilter:
-                  _currentIndex == 3
-                      ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                      : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/images/profile.svg",
+                colorFilter:
+                    _currentIndex == 3
+                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
+                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              ),
+              label: "Profile",
             ),
-            label: "Profile",
-          ),
-        ],
-      ),
+          ],
+        ),
 
-      body: screens[_currentIndex],
+        body: screens[_currentIndex],
+      ),
     );
   }
 }
