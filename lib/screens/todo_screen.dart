@@ -10,6 +10,8 @@ class TodoScreen extends StatefulWidget {
 class _TodoScreenState extends State<TodoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Container(child: Text("TODO SCREEN")));
+    return Center(
+      child: Container(child: Text("TODO SCREEN", style: TextStyle(color: Colors.white))),
+    );
   }
 }

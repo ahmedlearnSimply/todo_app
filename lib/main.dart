@@ -23,7 +23,15 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.background,
-        appBarTheme: AppBarTheme(titleTextStyle: TextStyle()),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontSize: 20,
+            fontFamily: 'poppins',
+            fontWeight: FontWeight.w400,
+            color: AppColor.primaryText,
+          ),
+          surfaceTintColor: AppColor.background,
+        ),
       ),
       debugShowCheckedModeBanner: false,
       home: isFirstTime ? MainScreen() : WelcomeScreen(),

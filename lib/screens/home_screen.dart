@@ -219,79 +219,51 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         Gap(8),
-                                        (allTasks[index].taskDescription != "")
-                                            ? Expanded(
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    allTasks[index].taskName,
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                allTasks[index].taskName,
 
-                                                    style: TextStyle(
-                                                      color:
-                                                          allTasks[index].isDone
-                                                              ? Color(0xffA0A0A0)
-                                                              : AppColor.primaryText,
-                                                      fontFamily: 'poppins',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 16,
+                                                style: TextStyle(
+                                                  color:
+                                                      allTasks[index].isDone
+                                                          ? Color(0xffA0A0A0)
+                                                          : AppColor.primaryText,
+                                                  fontFamily: 'poppins',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 16,
 
-                                                      overflow: TextOverflow.ellipsis,
-                                                      decoration:
-                                                          allTasks[index].isDone
-                                                              ? TextDecoration.lineThrough
-                                                              : TextDecoration.none,
-                                                      decorationColor: Color(0xffA0A0A0),
-                                                    ),
-                                                    maxLines: 1,
-                                                  ),
-                                                  Text(
-                                                    allTasks[index].taskDescription,
-                                                    style: TextStyle(
-                                                      color:
-                                                          allTasks[index].isDone
-                                                              ? Color(0xffA0A0A0)
-                                                              : AppColor.secondaryText,
-                                                      fontFamily: 'poppins',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 14,
-                                                      overflow: TextOverflow.ellipsis,
-                                                    ),
-                                                    maxLines: 1,
-                                                  ),
-                                                ],
+                                                  overflow: TextOverflow.ellipsis,
+                                                  decoration:
+                                                      allTasks[index].isDone
+                                                          ? TextDecoration.lineThrough
+                                                          : TextDecoration.none,
+                                                  decorationColor: Color(0xffA0A0A0),
+                                                ),
+                                                maxLines: 1,
                                               ),
-                                            )
-                                            : Expanded(
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    allTasks[index].taskName,
-
-                                                    style: TextStyle(
-                                                      color:
-                                                          allTasks[index].isDone
-                                                              ? Color(0xffA0A0A0)
-                                                              : AppColor.primaryText,
-                                                      fontFamily: 'poppins',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 16,
-
-                                                      overflow: TextOverflow.ellipsis,
-                                                      decoration:
-                                                          allTasks[index].isDone
-                                                              ? TextDecoration.lineThrough
-                                                              : TextDecoration.none,
-                                                      decorationColor: Color(0xffA0A0A0),
-                                                    ),
-                                                    maxLines: 1,
+                                              if (allTasks[index].taskDescription != "")
+                                                Text(
+                                                  allTasks[index].taskDescription,
+                                                  style: TextStyle(
+                                                    color:
+                                                        allTasks[index].isDone
+                                                            ? Color(0xffA0A0A0)
+                                                            : AppColor.secondaryText,
+                                                    fontFamily: 'poppins',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 14,
+                                                    overflow: TextOverflow.ellipsis,
                                                   ),
-                                                ],
-                                              ),
-                                            ),
+                                                  maxLines: 1,
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+
                                         Gap(12),
                                         IconButton(
                                           onPressed: () {},
