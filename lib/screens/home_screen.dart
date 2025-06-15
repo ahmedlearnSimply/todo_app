@@ -204,10 +204,3 @@ class _HomeScreenState extends State<HomeScreen> {
     pref.setString('tasks', jsonEncode(updatedTasks));
   }
 }
-//  onChanged: (value) async {
-//                                               setState(() {
-//                                                 allTasks[index].isDone = value ?? false;
-//                                               });
-
-//                                               await saveUpdatedTasks();
-//                                             },
