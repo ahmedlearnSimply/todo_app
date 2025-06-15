@@ -14,6 +14,9 @@ class TodoScreen extends StatefulWidget {
 
 class _TodoScreenState extends State<TodoScreen> {
   @override
+  List<TaskModel> allTasks = [];
+  bool isLoading = false;
+  List<TaskModel> checkedTasks = [];
   void initState() {
     super.initState();
     _loadTask();
@@ -32,7 +35,7 @@ class _TodoScreenState extends State<TodoScreen> {
 
       setState(() {
         allTasks = taskAfterDecode.map((e) => TaskModel.fromJson(e)).toList();
-        allTasks = allTasks.where((element) => element.isDone == false).toList();
+        checkedTasks = allTasks.where((element) => element.isDone == false).toList();
       });
       setState(() {
         isLoading = false;
@@ -40,26 +43,22 @@ class _TodoScreenState extends State<TodoScreen> {
     }
   }
 
-  List<TaskModel> allTasks = [];
-  bool isLoading = false;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("To Do Tasks")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Expanded(
-          child: TasksItems(
-            isLoading: isLoading,
-            tasks: allTasks,
-            onTap: (value, index) async {
-              setState(() {
-                allTasks[index].isDone = value ?? false;
-              });
+        child: TasksItems(
+          isLoading: isLoading,
+          tasks: checkedTasks,
+          onTap: (value, index) async {
+            setState(() {
+              checkedTasks[index].isDone = value ?? false;
+            });
 
-              await saveUpdatedTasks();
-              _loadTask();
-            },
-          ),
+            await saveUpdatedTasks();
+            _loadTask();
+          },
         ),
       ),
     );
