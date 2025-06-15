@@ -53,9 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
       setState(() {
         allTasks = taskAfterDecode.map((e) => TaskModel.fromJson(e)).toList();
-        isLoading = false;
       });
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -180,16 +182,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Gap(16),
 
-              TasksItems(
-                isLoading: isLoading,
-                tasks: allTasks,
-                onTap: (value, index) async {
-                  setState(() {
-                    allTasks[index].isDone = value ?? false;
-                  });
+              Expanded(
+                child: TasksItems(
+                  isLoading: isLoading,
+                  tasks: allTasks,
+                  onTap: (value, index) async {
+                    setState(() {
+                      allTasks[index].isDone = value ?? false;
+                    });
 
-                  await saveUpdatedTasks();
-                },
+                    await saveUpdatedTasks();
+                  },
+                ),
               ),
             ],
           ),

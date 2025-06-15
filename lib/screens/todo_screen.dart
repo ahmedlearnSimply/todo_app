@@ -32,6 +32,9 @@ class _TodoScreenState extends State<TodoScreen> {
 
       setState(() {
         allTasks = taskAfterDecode.map((e) => TaskModel.fromJson(e)).toList();
+        allTasks = allTasks.where((element) => element.isDone == false).toList();
+      });
+      setState(() {
         isLoading = false;
       });
     }
@@ -44,16 +47,19 @@ class _TodoScreenState extends State<TodoScreen> {
       appBar: AppBar(title: Text("To Do Tasks")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: TasksItems(
-          isLoading: isLoading,
-          tasks: allTasks,
-          onTap: (value, index) async {
-            setState(() {
-              allTasks[index].isDone = value ?? false;
-            });
+        child: Expanded(
+          child: TasksItems(
+            isLoading: isLoading,
+            tasks: allTasks,
+            onTap: (value, index) async {
+              setState(() {
+                allTasks[index].isDone = value ?? false;
+              });
 
-            await saveUpdatedTasks();
-          },
+              await saveUpdatedTasks();
+              _loadTask();
+            },
+          ),
         ),
       ),
     );
