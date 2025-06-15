@@ -7,17 +7,24 @@ import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class TasksItems extends StatelessWidget {
-  TasksItems({super.key, required this.tasks, required this.isLoading, required this.onTap});
+  TasksItems({
+    super.key,
+    required this.tasks,
+    required this.isLoading,
+    required this.onTap,
+    this.emptyMessage,
+  });
 
   List<TaskModel> tasks = [];
   bool isLoading = false;
   final Function(bool? value, int index) onTap;
+  String? emptyMessage;
   @override
   Widget build(BuildContext context) {
     if (tasks.isEmpty && !isLoading) {
       return Center(
         child: Text(
-          "No tasks yet!",
+          emptyMessage ?? "No Task Found",
           style: TextStyle(
             color: AppColor.primaryText,
             fontFamily: 'poppins',
