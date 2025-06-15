@@ -283,26 +283,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             ),
                   )
-                  : Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Text(
-                            "There is No Task ",
+                  : Center(
+                    child: Text(
+                      "There is No Task ",
 
-                            style: TextStyle(
-                              color: AppColor.primaryText,
-                              fontFamily: 'poppins',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 26,
+                      style: TextStyle(
+                        color: AppColor.primaryText,
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 26,
 
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            maxLines: 1,
-                          ),
-                        ),
-                      ],
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      maxLines: 1,
                     ),
                   ),
             ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/widgets/tasks_items.dart';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({super.key});
@@ -10,8 +11,6 @@ class TodoScreen extends StatefulWidget {
 class _TodoScreenState extends State<TodoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(child: Text("TODO SCREEN", style: TextStyle(color: Colors.white))),
-    );
+    return TasksItems();
   }
 }

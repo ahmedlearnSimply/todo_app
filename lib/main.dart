@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/main_screen.dart';
@@ -8,7 +9,7 @@ import 'package:todo_app/screens/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // important line for shared preferences
-  // final pref = await SharedPreferences.getInstance();
+  final pref = await SharedPreferences.getInstance();
   // pref.clear();
   final isFirstTime = await AppLocalStorage.getKOnboarding() ?? false;
   runApp(MainApp(isFirstTime: isFirstTime));
