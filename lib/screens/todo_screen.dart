@@ -11,6 +11,12 @@ class TodoScreen extends StatefulWidget {
 class _TodoScreenState extends State<TodoScreen> {
   @override
   Widget build(BuildContext context) {
-    return TasksItems();
+    return Scaffold(
+      appBar: AppBar(title: Text("To Do Tasks")),
+      body: Center(),
+      // body: Padding(padding: const EdgeInsets.all(16.0), child: TasksItems(tasks: [],onTap: (){
+
+      // },)),
+    );
   }
 }

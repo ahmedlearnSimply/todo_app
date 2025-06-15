@@ -33,21 +33,7 @@ class _AddTaskState extends State<AddTask> {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.background,
-          appBar: AppBar(
-            surfaceTintColor: AppColor.background,
-            title: Text(
-              "New Task",
-              style: TextStyle(
-                fontSize: 20,
-                fontFamily: 'poppins',
-                fontWeight: FontWeight.w400,
-                color: AppColor.primaryText,
-              ),
-            ),
-            iconTheme: IconThemeData(color: AppColor.primaryText),
-            backgroundColor: AppColor.background,
-          ),
+          appBar: AppBar(title: Text("New Task")),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Form(

@@ -25,6 +25,9 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.background,
         appBarTheme: AppBarTheme(
+          centerTitle: false,
+          elevation: 0,
+          iconTheme: IconThemeData(color: AppColor.primaryText),
           titleTextStyle: TextStyle(
             fontSize: 20,
             fontFamily: 'poppins',
@@ -32,6 +35,7 @@ class MainApp extends StatelessWidget {
             color: AppColor.primaryText,
           ),
           surfaceTintColor: AppColor.background,
+          backgroundColor: AppColor.background,
         ),
       ),
       debugShowCheckedModeBanner: false,
