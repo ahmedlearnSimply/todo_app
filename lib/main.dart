@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
-import 'package:todo_app/screens/home_screen.dart';
+import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/main_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
 
@@ -22,6 +21,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColor.background,
+        appBarTheme: AppBarTheme(titleTextStyle: TextStyle()),
+      ),
       debugShowCheckedModeBanner: false,
       home: isFirstTime ? MainScreen() : WelcomeScreen(),
     );
