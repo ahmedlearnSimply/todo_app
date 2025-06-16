@@ -26,7 +26,6 @@ class _TodoScreenState extends State<TodoScreen> {
     setState(() {
       isLoading = true;
     });
-    // await Future.delayed(Duration(microseconds: 20)); : ! for loading but now i dont want it
     final pref = await SharedPreferences.getInstance();
 
     final finalTask = pref.getString('tasks');
