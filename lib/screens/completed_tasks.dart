@@ -10,6 +10,8 @@ class CompletedTasks extends StatefulWidget {
 class _CompletedTasksState extends State<CompletedTasks> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Container(child: Text("CompletedTasks")));
+    return Center(
+      child: Container(child: Text("CompletedTasks", style: TextStyle(color: Colors.white))),
+    );
   }
 }
