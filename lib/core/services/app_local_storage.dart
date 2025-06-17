@@ -3,27 +3,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppLocalStorage {
   static String usernameKey = "username";
   static String kOnboardingKey = "onboarding";
+  static late SharedPreferences _prefs;
+
   //save and get name
-  static Future<void> saveName(String name) async {
-    final pref = await SharedPreferences.getInstance();
-    await pref.setString(usernameKey, name);
+
+  static Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
   }
 
-  static Future<String?> getName() async {
-    final pref = await SharedPreferences.getInstance();
-    return pref.getString(usernameKey);
+  static Future<void> saveName(String name) async {
+    await _prefs.setString(usernameKey, name);
+  }
+
+  static String? getName() {
+    return _prefs.getString(usernameKey);
   }
 
   //save and get onboarding
-  static Future<void> saveOnboarding(
-    bool onboarding,
-  ) async {
-    final pref = await SharedPreferences.getInstance();
-    await pref.setBool(kOnboardingKey, onboarding);
+  static Future<void> saveOnboarding(bool onboarding) async {
+    await _prefs.setBool(kOnboardingKey, onboarding);
   }
 
-  static Future<bool?> getKOnboarding() async {
-    final pref = await SharedPreferences.getInstance();
-    return pref.getBool(kOnboardingKey);
+  static bool? getKOnboarding() {
+    return _prefs.getBool(kOnboardingKey);
   }
 }
