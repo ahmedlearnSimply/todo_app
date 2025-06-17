@@ -78,7 +78,7 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
 
-        body: screens[_currentIndex],
+        body: SafeArea(child: screens[_currentIndex]),
       ),
     );
   }

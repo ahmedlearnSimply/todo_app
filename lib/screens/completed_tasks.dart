@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
 
 class CompletedTasks extends StatefulWidget {
@@ -43,22 +44,38 @@ class _CompletedTasksState extends State<CompletedTasks> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Completed Tasks")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: TasksItems(
-          isLoading: isLoading,
-          tasks: completedTasks,
-          onTap: (value, index) async {
-            setState(() {
-              completedTasks[index].isDone = value ?? false;
-            });
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Completed Tasks",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: AppColor.primaryText,
+              fontFamily: 'poppins',
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: TasksItems(
+                isLoading: isLoading,
+                tasks: completedTasks,
+                onTap: (value, index) async {
+                  setState(() {
+                    completedTasks[index].isDone = value ?? false;
+                  });
 
-            await saveUpdatedTasks();
-            _loadTask();
-          },
-        ),
+                  await saveUpdatedTasks();
+                  _loadTask();
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

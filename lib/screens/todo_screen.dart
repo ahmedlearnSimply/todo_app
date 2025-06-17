@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
 
 class TodoScreen extends StatefulWidget {
@@ -43,22 +44,39 @@ class _TodoScreenState extends State<TodoScreen> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("To Do Tasks")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: TasksItems(
-          isLoading: isLoading,
-          tasks: checkedTasks,
-          onTap: (value, index) async {
-            setState(() {
-              checkedTasks[index].isDone = value ?? false;
-            });
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
 
-            await saveUpdatedTasks();
-            _loadTask();
-          },
-        ),
+        children: [
+          Text(
+            "To Do Tasks",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: AppColor.primaryText,
+              fontFamily: 'poppins',
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: TasksItems(
+                isLoading: isLoading,
+                tasks: checkedTasks,
+                onTap: (value, index) async {
+                  setState(() {
+                    checkedTasks[index].isDone = value ?? false;
+                  });
+
+                  await saveUpdatedTasks();
+                  _loadTask();
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
