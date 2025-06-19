@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
@@ -12,6 +13,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
+  bool isDarkMode = true;
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(18.0),
@@ -92,6 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           Gap(24),
+
           Text(
             "Profile Info",
             style: TextStyle(
@@ -99,6 +102,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontWeight: FontWeight.w400,
               color: AppColor.primaryText,
               fontFamily: 'poppins',
+            ),
+          ),
+          Gap(8),
+          //user Details
+          ListTile(
+            onTap: () {
+              //Todo move user Details pages
+            },
+            contentPadding: EdgeInsets.zero,
+            trailing: SvgPicture.asset(
+              "assets/images/arrow_back.svg",
+              colorFilter: ColorFilter.mode(Color(0xffC6C6C6), BlendMode.srcIn),
+            ),
+            title: Text(
+              "User Details",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: AppColor.primaryText,
+                fontFamily: 'poppins',
+              ),
+            ),
+            leading: SvgPicture.asset(
+              "assets/images/profile.svg",
+              colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+            ),
+          ),
+          Divider(color: Color(0xff6E6E6E), thickness: 1),
+          //Dark Mode
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+
+            trailing: Switch(
+              value: isDarkMode,
+              onChanged: (value) {
+                setState(() {
+                  isDarkMode = value;
+                });
+              },
+            ),
+            title: Text(
+              "Dark Mode",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: AppColor.primaryText,
+                fontFamily: 'poppins',
+              ),
+            ),
+            leading: SvgPicture.asset(
+              "assets/images/moon.svg",
+              colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+            ),
+          ),
+          Divider(color: Color(0xff6E6E6E), thickness: 1),
+          //Log out
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            onTap: () {
+              //Todo move user Details pages
+            },
+
+            title: Text(
+              "Log Out",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: AppColor.primaryText,
+                fontFamily: 'poppins',
+              ),
+            ),
+            leading: SvgPicture.asset(
+              "assets/images/logout.svg",
+              colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+            ),
+            trailing: SvgPicture.asset(
+              "assets/images/arrow_back.svg",
+              colorFilter: ColorFilter.mode(Color(0xffC6C6C6), BlendMode.srcIn),
             ),
           ),
         ],

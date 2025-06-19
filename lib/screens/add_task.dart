@@ -147,7 +147,6 @@ class _AddTaskState extends State<AddTask> {
                               ),
                               Switch(
                                 value: isHighPriority,
-                                activeTrackColor: AppColor.green,
 
                                 onChanged: (value) {
                                   setState(() {
