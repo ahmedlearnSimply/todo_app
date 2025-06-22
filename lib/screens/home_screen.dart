@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -24,6 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<TaskModel> allTasks = [];
   bool isLoading = false;
 
+  //for achieved tasks
+  int totalTasks = 0;
+  int totalDoneTasks = 0;
+  double achievedTasks = 0;
   @override
   void initState() {
     super.initState();
@@ -54,11 +57,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
       setState(() {
         allTasks = taskAfterDecode.map((e) => TaskModel.fromJson(e)).toList();
+        calculateIndicator();
       });
     }
     setState(() {
       isLoading = false;
     });
+  }
+
+  void calculateIndicator() {
+    totalTasks = allTasks.length;
+    totalDoneTasks = allTasks.where((element) => element.isDone).length;
+    achievedTasks = (totalTasks == 0) ? 0 : totalDoneTasks / totalTasks;
   }
 
   @override
@@ -172,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               Gap(24),
-
+              // /Achieved Tasks
               Container(
                 padding: EdgeInsets.all(16),
                 width: double.infinity,
@@ -196,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Text(
-                          "3 Out of 6 Done",
+                          "$totalDoneTasks Out of $totalTasks Done",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -210,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.center,
                       children: [
                         Text(
-                          "50%",
+                          "${(achievedTasks * 100).toStringAsFixed(0)}%",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
@@ -222,10 +232,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Transform.rotate(
                           angle: -pi / 1.6,
                           child: SizedBox(
-                            width: 44,
-                            height: 44,
+                            width: 48,
+                            height: 48,
                             child: CircularProgressIndicator(
-                              value: 0.5,
+                              value: achievedTasks,
                               backgroundColor: Color(0xff6D6D6D),
 
                               valueColor: AlwaysStoppedAnimation(AppColor.green),
@@ -272,5 +282,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final pref = await SharedPreferences.getInstance();
     final updatedTasks = allTasks.map((element) => element.toJson()).toList();
     pref.setString('tasks', jsonEncode(updatedTasks));
+    calculateIndicator();
   }
 }
