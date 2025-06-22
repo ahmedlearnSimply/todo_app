@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -171,6 +172,72 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               Gap(24),
+
+              Container(
+                padding: EdgeInsets.all(16),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColor.surface,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Achieved Tasks",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            fontFamily: 'poppins',
+                            color: AppColor.primaryText,
+                          ),
+                        ),
+                        Text(
+                          "3 Out of 6 Done",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            fontFamily: 'poppins',
+                            color: AppColor.secondaryText,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Text(
+                          "50%",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            fontFamily: 'poppins',
+                            color: AppColor.primaryText,
+                          ),
+                        ),
+
+                        Transform.rotate(
+                          angle: -pi / 1.6,
+                          child: SizedBox(
+                            width: 44,
+                            height: 44,
+                            child: CircularProgressIndicator(
+                              value: 0.5,
+                              backgroundColor: Color(0xff6D6D6D),
+
+                              valueColor: AlwaysStoppedAnimation(AppColor.green),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Gap(24),
               Text(
                 "My Tasks",
                 style: TextStyle(
@@ -181,7 +248,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Gap(16),
-
               Expanded(
                 child: TasksItems(
                   isLoading: isLoading,
