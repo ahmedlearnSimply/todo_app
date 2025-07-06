@@ -192,7 +192,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Gap(8),
               //High Priority Tasks
-              HighPriorityTasksWidget(),
+              HighPriorityTasksWidget(
+                tasks: allTasks.where((elemet) => elemet.isHighPriority).toList(),
+              ),
               Gap(24),
               // my tasks
               Text(

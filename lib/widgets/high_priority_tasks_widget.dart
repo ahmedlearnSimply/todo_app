@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
@@ -26,6 +27,9 @@ class HighPriorityTasksWidget extends StatelessWidget {
                 color: AppColor.green,
               ),
             ),
+            ...tasks.take(4).map((e) {
+              return Container(margin: EdgeInsets.all(10), height: 20, color: Colors.red);
+            }),
           ],
         ),
       ),
