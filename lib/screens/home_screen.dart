@@ -29,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int totalTasks = 0;
   int totalDoneTasks = 0;
   double achievedTasks = 0;
+  List<TaskModel> checkedTasks = [];
+
   @override
   void initState() {
     super.initState();
@@ -193,7 +195,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Gap(8),
               //High Priority Tasks
               HighPriorityTasksWidget(
-                tasks: allTasks.where((elemet) => elemet.isHighPriority).toList(),
+                tasks: allTasks,
+                onTap: (value, index) async {
+                  setState(() {
+                    allTasks[index].isDone = value ?? false;
+                  });
+                  await saveUpdatedTasks();
+                },
               ),
               Gap(24),
               // my tasks

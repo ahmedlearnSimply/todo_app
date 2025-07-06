@@ -3,11 +3,13 @@ class TaskModel {
   final String taskDescription;
   final bool isHighPriority;
   bool isDone;
+  int id;
 
   TaskModel({
     required this.taskName,
     required this.taskDescription,
     required this.isHighPriority,
+    required this.id,
     this.isDone = false,
   });
 
@@ -17,6 +19,7 @@ class TaskModel {
       taskDescription: json['taskDescription'],
       isHighPriority: json['isHighPriority'],
       isDone: json['isDone'] ?? false,
+      id: json['id'] ?? 0,
     );
   }
 
@@ -27,6 +30,7 @@ class TaskModel {
       'taskDescription': taskDescription,
       'isHighPriority': isHighPriority,
       'isDone': isDone,
+      'id': id,
     };
   }
 }

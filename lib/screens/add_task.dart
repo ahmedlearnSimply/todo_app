@@ -173,6 +173,7 @@ class _AddTaskState extends State<AddTask> {
                           taskName: taskNameController.text,
                           taskDescription: desController.text,
                           isHighPriority: isHighPriority,
+                          id: DateTime.now().millisecondsSinceEpoch,
                         );
                         final pref = await SharedPreferences.getInstance();
                         final taskJson = pref.getString('tasks');
