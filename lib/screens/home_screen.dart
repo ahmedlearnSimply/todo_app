@@ -205,6 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   )
                   : SizedBox(),
+              Gap(24),
 
               // my tasks
               Text(

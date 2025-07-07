@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
@@ -14,24 +15,27 @@ class HighPriorityTasksWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(color: AppColor.surface, borderRadius: BorderRadius.circular(20)),
 
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16, left: 16, bottom: 8),
+            child: Text(
               "High Priority Tasks",
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'poppins',
                 color: AppColor.green,
               ),
             ),
-            ...tasks.where((e) => e.isHighPriority).take(4).map((element) {
-              return Row(
-                children: [
-                  Checkbox(
+          ),
+          ...tasks.where((e) => e.isHighPriority).take(4).map((element) {
+            return Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Checkbox(
                     activeColor: AppColor.green,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                     value: element.isDone,
@@ -40,7 +44,9 @@ class HighPriorityTasksWidget extends StatelessWidget {
                       onTap(value, indexInAllTasks);
                     },
                   ),
-                  Text(
+                ),
+                Expanded(
+                  child: Text(
                     element.taskName,
                     style: TextStyle(
                       color: element.isDone ? Color(0xffA0A0A0) : AppColor.primaryText,
@@ -54,11 +60,12 @@ class HighPriorityTasksWidget extends StatelessWidget {
                     ),
                     maxLines: 1,
                   ),
-                ],
-              );
-            }),
-          ],
-        ),
+                ),
+                Gap(10),
+              ],
+            );
+          }),
+        ],
       ),
     );
   }
