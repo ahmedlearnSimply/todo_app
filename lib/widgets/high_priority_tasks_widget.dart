@@ -37,10 +37,9 @@ class HighPriorityTasksWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                     value: element.isDone,
                     onChanged: (bool? value) {
-                      final index = tasks.indexWhere((e) {
-                        return e.id == element.id;
-                      });
-                      onTap(value, index);
+                      final indexInAllTasks = tasks.indexWhere((e) => e.id == element.id);
+
+                      onTap(value, indexInAllTasks);
                     },
                   ),
                 ],
