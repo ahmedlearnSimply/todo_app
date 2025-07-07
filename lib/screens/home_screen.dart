@@ -74,6 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
     achievedTasks = (totalTasks == 0) ? 0 : totalDoneTasks / totalTasks;
   }
 
+  void doneTasks(bool? value, int index) async {
+    setState(() {
+      allTasks[index].isDone = value ?? false;
+    });
+    await saveUpdatedTasks();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -197,11 +204,8 @@ class _HomeScreenState extends State<HomeScreen> {
               allTasks.where((e) => e.isHighPriority).isNotEmpty
                   ? HighPriorityTasksWidget(
                     tasks: allTasks,
-                    onTap: (value, index) async {
-                      setState(() {
-                        allTasks[index].isDone = value ?? false;
-                      });
-                      await saveUpdatedTasks();
+                    onTap: (value, index) {
+                      doneTasks(value, index);
                     },
                   )
                   : SizedBox(),
@@ -222,12 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: TasksItems(
                   isLoading: isLoading,
                   tasks: allTasks,
-                  onTap: (value, index) async {
-                    setState(() {
-                      allTasks[index].isDone = value ?? false;
-                    });
-
-                    await saveUpdatedTasks();
+                  onTap: (value, index) {
+                    doneTasks(value, index);
                   },
                 ),
               ),
