@@ -19,7 +19,7 @@ class TaskModel {
       taskDescription: json['taskDescription'],
       isHighPriority: json['isHighPriority'],
       isDone: json['isDone'] ?? false,
-      id: json['id'] ?? 0,
+      id: json['id'],
     );
   }
 
