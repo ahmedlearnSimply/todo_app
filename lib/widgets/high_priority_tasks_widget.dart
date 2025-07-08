@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/screens/high_priority_screen.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
 
 class HighPriorityTasksWidget extends StatelessWidget {
@@ -77,7 +78,14 @@ class HighPriorityTasksWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              //Todo : Navigate to high priority tasks
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return HighPriorityScreen();
+                  },
+                ),
+              );
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
