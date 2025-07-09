@@ -214,6 +214,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: (value, index) {
                       doneTasks(value, index);
                     },
+                    refresh: () {
+                      _loadTask();
+                    },
                   )
                   : SizedBox(),
               Gap(24),

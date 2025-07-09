@@ -10,9 +10,15 @@ import 'package:todo_app/screens/high_priority_screen.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
 
 class HighPriorityTasksWidget extends StatefulWidget {
-  HighPriorityTasksWidget({super.key, required this.tasks, required this.onTap});
+  HighPriorityTasksWidget({
+    super.key,
+    required this.tasks,
+    required this.onTap,
+    required this.refresh,
+  });
 
   final Function(bool? value, int index) onTap;
+  final Function refresh;
   List<TaskModel> tasks;
 
   @override
@@ -32,6 +38,11 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
       widget.tasks[index].isDone = value ?? false;
     });
     await saveUpdatedTasks();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   Widget build(BuildContext context) {
@@ -58,7 +69,7 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                     ),
                   ),
                 ),
-                ...widget.tasks.where((e) => e.isHighPriority).take(4).map((element) {
+                ...widget.tasks.reversed.where((e) => e.isHighPriority).take(4).map((element) {
                   return Row(
                     children: [
                       Padding(
@@ -97,9 +108,10 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
               ],
             ),
           ),
+          //----------------------------------------------------------------------//
           GestureDetector(
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) {
@@ -107,6 +119,7 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                   },
                 ),
               );
+              widget.refresh();
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -127,6 +140,8 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
               ),
             ),
           ),
+
+          //----------------------------------------------------------------------//
         ],
       ),
     );
