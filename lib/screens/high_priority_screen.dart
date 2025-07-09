@@ -1,15 +1,82 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/widgets/tasks_items.dart';
 
 class HighPriorityScreen extends StatefulWidget {
-  const HighPriorityScreen({super.key});
+  HighPriorityScreen({super.key});
 
   @override
   State<HighPriorityScreen> createState() => _HighPriorityScreenState();
 }
 
 class _HighPriorityScreenState extends State<HighPriorityScreen> {
+  List<TaskModel> allTasks = [];
+  bool isLoading = false;
+  List<TaskModel> checkedTasks = [];
+  void initState() {
+    super.initState();
+    _loadTask();
+  }
+
+  void _loadTask() async {
+    setState(() {
+      isLoading = true;
+    });
+    final pref = await SharedPreferences.getInstance();
+
+    final finalTask = pref.getString('tasks');
+    if (finalTask != null) {
+      final taskAfterDecode = jsonDecode(finalTask) as List<dynamic>;
+
+      setState(() {
+        allTasks = taskAfterDecode.map((e) => TaskModel.fromJson(e)).toList();
+        checkedTasks = allTasks.where((element) => element.isDone == false).toList();
+      });
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("High Priority Tasks ")));
+    return Scaffold(
+      appBar: AppBar(title: Text("High Priority widget ")),
+
+      body: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: TasksItems(
+            isLoading: isLoading,
+            tasks: allTasks,
+            onTap: (value, index) async {
+              setState(() {
+                allTasks[index].isDone = value ?? false;
+              });
+              await saveUpdatedTasks();
+              _loadTask();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> saveUpdatedTasks() async {
+    final pref = await SharedPreferences.getInstance();
+    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
+    pref.setString('tasks', jsonEncode(updatedTasks));
+  }
+
+  void doneTasks(bool? value, int index) async {
+    setState(() {
+      allTasks[index].isDone = value ?? false;
+    });
+    await saveUpdatedTasks();
   }
 }

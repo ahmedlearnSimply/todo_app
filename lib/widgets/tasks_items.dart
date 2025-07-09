@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 

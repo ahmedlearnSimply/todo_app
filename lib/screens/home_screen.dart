@@ -81,6 +81,13 @@ class _HomeScreenState extends State<HomeScreen> {
     await saveUpdatedTasks();
   }
 
+  Future<void> saveUpdatedTasks() async {
+    final pref = await SharedPreferences.getInstance();
+    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
+    pref.setString('tasks', jsonEncode(updatedTasks));
+    calculateIndicator();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -236,12 +243,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> saveUpdatedTasks() async {
-    final pref = await SharedPreferences.getInstance();
-    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
-    pref.setString('tasks', jsonEncode(updatedTasks));
-    calculateIndicator();
   }
 }

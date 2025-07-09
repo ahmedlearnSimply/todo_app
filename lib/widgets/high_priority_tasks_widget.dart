@@ -1,18 +1,39 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/high_priority_screen.dart';
 import 'package:todo_app/widgets/tasks_items.dart';
 
-class HighPriorityTasksWidget extends StatelessWidget {
+class HighPriorityTasksWidget extends StatefulWidget {
   HighPriorityTasksWidget({super.key, required this.tasks, required this.onTap});
 
   final Function(bool? value, int index) onTap;
   List<TaskModel> tasks;
 
   @override
+  State<HighPriorityTasksWidget> createState() => _HighPriorityTasksWidgetState();
+}
+
+class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
+  @override
+  Future<void> saveUpdatedTasks() async {
+    final pref = await SharedPreferences.getInstance();
+    final updatedTasks = widget.tasks.map((element) => element.toJson()).toList();
+    pref.setString('tasks', jsonEncode(updatedTasks));
+  }
+
+  void doneTasks(bool? value, int index) async {
+    setState(() {
+      widget.tasks[index].isDone = value ?? false;
+    });
+    await saveUpdatedTasks();
+  }
+
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: AppColor.surface, borderRadius: BorderRadius.circular(20)),
@@ -37,7 +58,7 @@ class HighPriorityTasksWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                ...tasks.where((e) => e.isHighPriority).take(4).map((element) {
+                ...widget.tasks.where((e) => e.isHighPriority).take(4).map((element) {
                   return Row(
                     children: [
                       Padding(
@@ -47,8 +68,8 @@ class HighPriorityTasksWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                           value: element.isDone,
                           onChanged: (bool? value) {
-                            final indexInAllTasks = tasks.indexOf(element);
-                            onTap(value, indexInAllTasks);
+                            final indexInAllTasks = widget.tasks.indexOf(element);
+                            widget.onTap(value, indexInAllTasks);
                           },
                         ),
                       ),
