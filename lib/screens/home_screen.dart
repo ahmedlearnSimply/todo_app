@@ -264,97 +264,102 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SliverToBoxAdapter(child: Gap(16)),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Container(
-                            height: 72,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColor.surface,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Checkbox(
-                                    activeColor: AppColor.green,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    value: allTasks[index].isDone,
-
-                                    onChanged: (bool? value) {
-                                      doneTasks(value, index);
-                                    },
-                                  ),
-                                ),
-                                Gap(8),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        allTasks[index].taskName,
-
-                                        style: TextStyle(
-                                          color:
-                                              allTasks[index].isDone
-                                                  ? Color(0xffA0A0A0)
-                                                  : AppColor.primaryText,
-                                          fontFamily: 'poppins',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16,
-
-                                          overflow: TextOverflow.ellipsis,
-                                          decoration:
-                                              allTasks[index].isDone
-                                                  ? TextDecoration.lineThrough
-                                                  : TextDecoration.none,
-                                          decorationColor: Color(0xffA0A0A0),
-                                        ),
-                                        maxLines: 1,
+                    SliverPadding(
+                      padding: EdgeInsets.only(bottom: 80),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              height: 72,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: AppColor.surface,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Checkbox(
+                                      activeColor: AppColor.green,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
                                       ),
-                                      if (allTasks[index].taskDescription != "")
+                                      value: allTasks[index].isDone,
+
+                                      onChanged: (bool? value) {
+                                        doneTasks(value, index);
+                                      },
+                                    ),
+                                  ),
+                                  Gap(8),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
                                         Text(
-                                          allTasks[index].taskDescription,
+                                          allTasks[index].taskName,
+
                                           style: TextStyle(
                                             color:
                                                 allTasks[index].isDone
                                                     ? Color(0xffA0A0A0)
-                                                    : AppColor.secondaryText,
+                                                    : AppColor.primaryText,
                                             fontFamily: 'poppins',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 14,
+                                            fontSize: 16,
+
                                             overflow: TextOverflow.ellipsis,
+                                            decoration:
+                                                allTasks[index].isDone
+                                                    ? TextDecoration.lineThrough
+                                                    : TextDecoration.none,
+                                            decorationColor: Color(0xffA0A0A0),
                                           ),
                                           maxLines: 1,
                                         ),
-                                    ],
+                                        if (allTasks[index].taskDescription !=
+                                            "")
+                                          Text(
+                                            allTasks[index].taskDescription,
+                                            style: TextStyle(
+                                              color:
+                                                  allTasks[index].isDone
+                                                      ? Color(0xffA0A0A0)
+                                                      : AppColor.secondaryText,
+                                              fontFamily: 'poppins',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            maxLines: 1,
+                                          ),
+                                      ],
+                                    ),
                                   ),
-                                ),
 
-                                Gap(12),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.more_vert,
-                                    color:
-                                        allTasks[index].isDone
-                                            ? Color(0xffA0A0A0)
-                                            : Color(0xffC6C6C6),
+                                  Gap(12),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.more_vert,
+                                      color:
+                                          allTasks[index].isDone
+                                              ? Color(0xffA0A0A0)
+                                              : Color(0xffC6C6C6),
+                                    ),
                                   ),
-                                ),
-                                Gap(5),
-                              ],
+                                  Gap(5),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }, childCount: allTasks.length),
+                          );
+                        }, childCount: allTasks.length),
+                      ),
                     ),
                     if (allTasks.isEmpty && !isLoading)
                       SliverToBoxAdapter(
