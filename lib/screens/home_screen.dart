@@ -356,6 +356,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       }, childCount: allTasks.length),
                     ),
+                    if (allTasks.isEmpty && !isLoading)
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 50),
+                          child: Center(
+                            child: Text(
+                              "No Task Found",
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'poppins',
+                                color: AppColor.primaryText,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
