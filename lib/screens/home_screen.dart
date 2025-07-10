@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<TaskModel> allTasks = [];
   bool isLoading = false;
 
+  String? emptyMessage;
   //for achieved tasks
   int totalTasks = 0;
   int totalDoneTasks = 0;
@@ -104,7 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
             label: Text(
               "Add New Task",
-              style: TextStyle(fontSize: 14, fontFamily: 'poppins', fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: 'poppins',
+                fontWeight: FontWeight.w500,
+              ),
             ),
 
             onPressed: () async {
@@ -118,18 +123,23 @@ class _HomeScreenState extends State<HomeScreen> {
               );
               _loadTask();
             },
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
           ),
         ),
 
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //! ✅ HEADER — Not Scrollable
               Row(
                 children: [
-                  CircleAvatar(radius: 21, backgroundImage: AssetImage("assets/images/ahmed.png")),
+                  CircleAvatar(
+                    radius: 21,
+                    backgroundImage: AssetImage("assets/images/ahmed.png"),
+                  ),
                   Gap(10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,79 +176,187 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {},
                       icon: SvgPicture.asset(
                         "assets/images/sun.svg",
-                        colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(
+                          AppColor.primaryText,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
 
-              Gap(16),
-
-              Text(
-                "Yuhuu ,Your work Is ",
-                style: TextStyle(
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 32,
-                ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    "almost done ! ",
-                    style: TextStyle(
-                      color: AppColor.primaryText,
-                      fontFamily: 'poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 32,
-                    ),
-                  ),
-                  SvgPicture.asset("assets/images/waving_hand.svg", width: 32, height: 32),
-                ],
-              ),
-              Gap(24),
-              // /Achieved Tasks
-              AchievedTasks(
-                totalDoneTasks: totalDoneTasks,
-                totalTasks: totalTasks,
-                achievedTasks: achievedTasks,
-              ),
-              Gap(8),
-
-              //High Priority Tasks
-              allTasks.where((e) => e.isHighPriority).isNotEmpty
-                  ? HighPriorityTasksWidget(
-                    tasks: allTasks,
-                    onTap: (value, index) {
-                      doneTasks(value, index);
-                    },
-                    refresh: () {
-                      _loadTask();
-                    },
-                  )
-                  : SizedBox(),
-              Gap(24),
-
-              // my tasks
-              Text(
-                "My Tasks",
-                style: TextStyle(
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              Gap(16),
               Expanded(
-                child: TasksItems(
-                  isLoading: isLoading,
-                  tasks: allTasks,
-                  onTap: (value, index) {
-                    doneTasks(value, index);
-                  },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(child: Gap(16)),
+                    //!Yuhuu ,Your work Is
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Yuhuu ,Your work Is ",
+                            style: TextStyle(
+                              color: AppColor.primaryText,
+                              fontFamily: 'poppins',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 32,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "almost done ! ",
+                                style: TextStyle(
+                                  color: AppColor.primaryText,
+                                  fontFamily: 'poppins',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 32,
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                "assets/images/waving_hand.svg",
+                                width: 32,
+                                height: 32,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SliverToBoxAdapter(child: Gap(16)),
+                    SliverToBoxAdapter(
+                      child: AchievedTasks(
+                        totalDoneTasks: totalDoneTasks,
+                        totalTasks: totalTasks,
+                        achievedTasks: achievedTasks,
+                      ),
+                    ),
+
+                    SliverToBoxAdapter(child: Gap(8)),
+
+                    //!High Priority Tasks
+                    allTasks.where((e) => e.isHighPriority).isNotEmpty
+                        ? SliverToBoxAdapter(
+                          child: HighPriorityTasksWidget(
+                            tasks: allTasks,
+                            onTap: (value, index) {
+                              doneTasks(value, index);
+                            },
+                            refresh: () {
+                              _loadTask();
+                            },
+                          ),
+                        )
+                        : SliverToBoxAdapter(child: SizedBox()),
+                    SliverToBoxAdapter(child: Gap(24)),
+                    //! my tasks
+                    SliverToBoxAdapter(
+                      child: Text(
+                        "My Tasks",
+                        style: TextStyle(
+                          color: AppColor.primaryText,
+                          fontFamily: 'poppins',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(child: Gap(16)),
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Container(
+                            height: 72,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: AppColor.surface,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Checkbox(
+                                    activeColor: AppColor.green,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    value: allTasks[index].isDone,
+
+                                    onChanged: (bool? value) {
+                                      doneTasks(value, index);
+                                    },
+                                  ),
+                                ),
+                                Gap(8),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        allTasks[index].taskName,
+
+                                        style: TextStyle(
+                                          color:
+                                              allTasks[index].isDone
+                                                  ? Color(0xffA0A0A0)
+                                                  : AppColor.primaryText,
+                                          fontFamily: 'poppins',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+
+                                          overflow: TextOverflow.ellipsis,
+                                          decoration:
+                                              allTasks[index].isDone
+                                                  ? TextDecoration.lineThrough
+                                                  : TextDecoration.none,
+                                          decorationColor: Color(0xffA0A0A0),
+                                        ),
+                                        maxLines: 1,
+                                      ),
+                                      if (allTasks[index].taskDescription != "")
+                                        Text(
+                                          allTasks[index].taskDescription,
+                                          style: TextStyle(
+                                            color:
+                                                allTasks[index].isDone
+                                                    ? Color(0xffA0A0A0)
+                                                    : AppColor.secondaryText,
+                                            fontFamily: 'poppins',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                    ],
+                                  ),
+                                ),
+
+                                Gap(12),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color:
+                                        allTasks[index].isDone
+                                            ? Color(0xffA0A0A0)
+                                            : Color(0xffC6C6C6),
+                                  ),
+                                ),
+                                Gap(5),
+                              ],
+                            ),
+                          ),
+                        );
+                      }, childCount: allTasks.length),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -248,3 +366,130 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+// Padding(
+          //   padding: const EdgeInsets.all(16.0),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+                // Row(
+                //   children: [
+                //     CircleAvatar(
+                //       radius: 21,
+                //       backgroundImage: AssetImage("assets/images/ahmed.png"),
+                //     ),
+                //     Gap(10),
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           "Good Evening , $username",
+                //           style: TextStyle(
+                //             color: AppColor.primaryText,
+                //             fontFamily: 'poppins',
+                //             fontWeight: FontWeight.w400,
+                //             fontSize: 16,
+                //           ),
+                //         ),
+                //         Text(
+                //           "One task at a time.One step closer. ",
+                //           style: TextStyle(
+                //             color: AppColor.secondaryText,
+                //             fontFamily: 'poppins',
+                //             fontWeight: FontWeight.w400,
+                //             fontSize: 14,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     Spacer(),
+                //     Container(
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(100),
+                //         color: AppColor.surface,
+                //       ),
+                //       width: 34,
+                //       height: 34,
+                //       child: IconButton(
+                //         onPressed: () {},
+                //         icon: SvgPicture.asset(
+                //           "assets/images/sun.svg",
+                //           colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+
+          //       Gap(16),
+
+          //       Text(
+          //         "Yuhuu ,Your work Is ",
+          //         style: TextStyle(
+          //           color: AppColor.primaryText,
+          //           fontFamily: 'poppins',
+          //           fontWeight: FontWeight.w400,
+          //           fontSize: 32,
+          //         ),
+          //       ),
+          //       Row(
+          //         children: [
+          //           Text(
+          //             "almost done ! ",
+          //             style: TextStyle(
+          //               color: AppColor.primaryText,
+          //               fontFamily: 'poppins',
+          //               fontWeight: FontWeight.w400,
+          //               fontSize: 32,
+          //             ),
+          //           ),
+          //           SvgPicture.asset("assets/images/waving_hand.svg", width: 32, height: 32),
+          //         ],
+          //       ),
+          //       Gap(24),
+          //       // /Achieved Tasks
+          //       AchievedTasks(
+          //         totalDoneTasks: totalDoneTasks,
+          //         totalTasks: totalTasks,
+          //         achievedTasks: achievedTasks,
+          //       ),
+          //       Gap(8),
+
+          //       //High Priority Tasks
+          //       allTasks.where((e) => e.isHighPriority).isNotEmpty
+          //           ? HighPriorityTasksWidget(
+          //             tasks: allTasks,
+          //             onTap: (value, index) {
+          //               doneTasks(value, index);
+          //             },
+          //             refresh: () {
+          //               _loadTask();
+          //             },
+          //           )
+          //           : SizedBox(),
+          //       Gap(24),
+
+          //       // my tasks
+          //       Text(
+          //         "My Tasks",
+          //         style: TextStyle(
+          //           color: AppColor.primaryText,
+          //           fontFamily: 'poppins',
+          //           fontWeight: FontWeight.w400,
+          //           fontSize: 20,
+          //         ),
+          //       ),
+          //       Gap(16),
+          //       Expanded(
+          //         child: TasksItems(
+          //           isLoading: isLoading,
+          //           tasks: allTasks,
+          //           onTap: (value, index) {
+          //             doneTasks(value, index);
+          //           },
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
