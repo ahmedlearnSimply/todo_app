@@ -7,70 +7,68 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: SizedBox(
-          height: 44,
-          width: 168,
-          child: FloatingActionButton.extended(
-            elevation: 0,
-            foregroundColor: AppColor.primaryText,
-            backgroundColor: AppColor.green,
-            icon: Icon(Icons.add, size: 18),
+    return Scaffold(
+      floatingActionButton: SizedBox(
+        height: 44,
+        width: 168,
+        child: FloatingActionButton.extended(
+          elevation: 0,
+          foregroundColor: AppColor.primaryText,
+          backgroundColor: AppColor.green,
+          icon: Icon(Icons.add, size: 18),
 
-            label: Text(
-              "Add New Task",
-              style: TextStyle(
-                fontSize: 14,
+          label: Text(
+            "Add New Task",
+            style: TextStyle(
+              fontSize: 14,
 
-                fontFamily: 'poppins',
-                fontWeight: FontWeight.w500,
+              fontFamily: 'poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return HomeScreen();
+                },
               ),
-            ),
-
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return HomeScreen();
-                  },
-                ),
-              );
-            },
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
-            ),
+            );
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
           ),
         ),
-        body: Center(
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Color(0xffFFFCFC),
-              backgroundColor: AppColor.green,
-              fixedSize: Size(168, 40),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return HomeScreen();
-                  },
-                ),
-              );
-            },
-            label: Text(
-              "Add New Task",
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'poppins',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-
-            icon: Icon(Icons.add, size: 18),
+      ),
+      body: Center(
+        child: ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Color(0xffFFFCFC),
+            backgroundColor: AppColor.green,
+            fixedSize: Size(168, 40),
           ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return HomeScreen();
+                },
+              ),
+            );
+          },
+          label: Text(
+            "Add New Task",
+            style: TextStyle(
+              fontSize: 14,
+              fontFamily: 'poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+
+          icon: Icon(Icons.add, size: 18),
         ),
       ),
     );
