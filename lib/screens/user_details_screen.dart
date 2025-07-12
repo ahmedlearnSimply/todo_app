@@ -5,6 +5,9 @@ class UserDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text("User Details")));
+    return Scaffold(
+      appBar: AppBar(title: Text("User Details")),
+      body: Column(children: []),
+    );
   }
 }

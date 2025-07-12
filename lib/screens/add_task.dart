@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/core/widgets/custom_text_form.dart';
 
 class AddTask extends StatefulWidget {
   AddTask({super.key});
@@ -59,39 +60,22 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           Gap(8),
-
-                          TextFormField(
-                            validator: (String? value) {
+                          // if (value == null || value.trim().isEmpty) {
+                          //                             return "Please Enter Name Of Task ";
+                          //                           }
+                          //                           return null;
+                          //                         },
+                          CustomTextForm(
+                            controller: taskNameController,
+                            hintText: "Shooting Two Videos of DSA Course",
+                            validator: (value) {
                               if (value == null || value.trim().isEmpty) {
                                 return "Please Enter Name Of Task ";
                               }
                               return null;
                             },
-                            controller: taskNameController,
-                            cursorColor: Colors.white,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'poppins',
-                              fontSize: 18,
-                            ),
-
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: BorderSide.none,
-                              ),
-                              fillColor: AppColor.surface,
-                              filled: true,
-                              hintText: "Finish Shooting Unit one",
-                              hintStyle: TextStyle(
-                                fontFamily: 'poppins',
-                                color: Color(0xff6D6D6D),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
                           ),
+
                           Gap(20),
                           Align(
                             alignment: Alignment.topLeft,
@@ -106,31 +90,10 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           Gap(8),
-                          TextFormField(
+                          CustomTextForm(
                             controller: desController,
-                            cursorColor: Colors.white,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'poppins',
-                              fontSize: 18,
-                            ),
+                            hintText: "DONT worry u can do it ",
                             maxLines: 5,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: BorderSide.none,
-                              ),
-                              fillColor: AppColor.surface,
-                              filled: true,
-                              hintText: "From Data Structure Course at Next Friday.",
-                              hintStyle: TextStyle(
-                                fontFamily: 'poppins',
-                                color: Color(0xff6D6D6D),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
                           ),
                           Gap(20),
                           Row(
