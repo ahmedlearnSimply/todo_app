@@ -31,6 +31,7 @@ class CustomTextForm extends StatelessWidget {
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
+
           borderSide: BorderSide.none,
         ),
         fillColor: AppColor.surface,

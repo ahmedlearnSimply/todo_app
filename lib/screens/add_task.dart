@@ -60,11 +60,7 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           Gap(8),
-                          // if (value == null || value.trim().isEmpty) {
-                          //                             return "Please Enter Name Of Task ";
-                          //                           }
-                          //                           return null;
-                          //                         },
+
                           CustomTextForm(
                             controller: taskNameController,
                             hintText: "Shooting Two Videos of DSA Course",
