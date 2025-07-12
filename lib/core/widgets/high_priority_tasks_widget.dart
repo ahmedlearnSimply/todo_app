@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/high_priority_screen.dart';
-import 'package:todo_app/widgets/tasks_items.dart';
+import 'package:todo_app/core/widgets/tasks_items.dart';
 
 class HighPriorityTasksWidget extends StatefulWidget {
   HighPriorityTasksWidget({
@@ -22,14 +22,16 @@ class HighPriorityTasksWidget extends StatefulWidget {
   List<TaskModel> tasks;
 
   @override
-  State<HighPriorityTasksWidget> createState() => _HighPriorityTasksWidgetState();
+  State<HighPriorityTasksWidget> createState() =>
+      _HighPriorityTasksWidgetState();
 }
 
 class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
   @override
   Future<void> saveUpdatedTasks() async {
     final pref = await SharedPreferences.getInstance();
-    final updatedTasks = widget.tasks.map((element) => element.toJson()).toList();
+    final updatedTasks =
+        widget.tasks.map((element) => element.toJson()).toList();
     pref.setString('tasks', jsonEncode(updatedTasks));
   }
 
@@ -47,7 +49,10 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
 
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: AppColor.surface, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        color: AppColor.surface,
+        borderRadius: BorderRadius.circular(20),
+      ),
 
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,42 +74,54 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                     ),
                   ),
                 ),
-                ...widget.tasks.reversed.where((e) => e.isHighPriority).take(4).map((element) {
-                  return Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
-                        child: Checkbox(
-                          activeColor: AppColor.green,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                          value: element.isDone,
-                          onChanged: (bool? value) {
-                            final indexInAllTasks = widget.tasks.indexOf(element);
-                            widget.onTap(value, indexInAllTasks);
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          element.taskName,
-                          style: TextStyle(
-                            color: element.isDone ? Color(0xffA0A0A0) : AppColor.primaryText,
-                            fontFamily: 'poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-
-                            overflow: TextOverflow.ellipsis,
-                            decoration:
-                                element.isDone ? TextDecoration.lineThrough : TextDecoration.none,
-                            decorationColor: Color(0xffA0A0A0),
+                ...widget.tasks.reversed
+                    .where((e) => e.isHighPriority)
+                    .take(4)
+                    .map((element) {
+                      return Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Checkbox(
+                              activeColor: AppColor.green,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              value: element.isDone,
+                              onChanged: (bool? value) {
+                                final indexInAllTasks = widget.tasks.indexOf(
+                                  element,
+                                );
+                                widget.onTap(value, indexInAllTasks);
+                              },
+                            ),
                           ),
-                          maxLines: 1,
-                        ),
-                      ),
-                      Gap(10),
-                    ],
-                  );
-                }),
+                          Expanded(
+                            child: Text(
+                              element.taskName,
+                              style: TextStyle(
+                                color:
+                                    element.isDone
+                                        ? Color(0xffA0A0A0)
+                                        : AppColor.primaryText,
+                                fontFamily: 'poppins',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+
+                                overflow: TextOverflow.ellipsis,
+                                decoration:
+                                    element.isDone
+                                        ? TextDecoration.lineThrough
+                                        : TextDecoration.none,
+                                decorationColor: Color(0xffA0A0A0),
+                              ),
+                              maxLines: 1,
+                            ),
+                          ),
+                          Gap(10),
+                        ],
+                      );
+                    }),
               ],
             ),
           ),
@@ -135,7 +152,11 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
 
                 child: Padding(
                   padding: const EdgeInsets.all(7.0),
-                  child: SvgPicture.asset("assets/images/arrow2.svg", width: 10, height: 10),
+                  child: SvgPicture.asset(
+                    "assets/images/arrow2.svg",
+                    width: 10,
+                    height: 10,
+                  ),
                 ),
               ),
             ),

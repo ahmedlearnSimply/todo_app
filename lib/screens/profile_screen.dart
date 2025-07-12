@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/screens/user_details_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -109,6 +110,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ListTile(
             onTap: () {
               //Todo move user Details pages
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return UserDetailsScreen();
+                  },
+                ),
+              );
             },
             contentPadding: EdgeInsets.zero,
             trailing: SvgPicture.asset(
@@ -126,7 +135,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             leading: SvgPicture.asset(
               "assets/images/profile.svg",
-              colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                AppColor.primaryText,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           Divider(color: Color(0xff6E6E6E), thickness: 1),
@@ -153,7 +165,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             leading: SvgPicture.asset(
               "assets/images/moon.svg",
-              colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                AppColor.primaryText,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           Divider(color: Color(0xff6E6E6E), thickness: 1),
@@ -175,7 +190,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             leading: SvgPicture.asset(
               "assets/images/logout.svg",
-              colorFilter: ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                AppColor.primaryText,
+                BlendMode.srcIn,
+              ),
             ),
             trailing: SvgPicture.asset(
               "assets/images/arrow_back.svg",

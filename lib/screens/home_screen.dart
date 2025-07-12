@@ -9,9 +9,9 @@ import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/add_task.dart';
-import 'package:todo_app/widgets/achieved_tasks_widget.dart';
-import 'package:todo_app/widgets/high_priority_tasks_widget.dart';
-import 'package:todo_app/widgets/tasks_items.dart';
+import 'package:todo_app/core/widgets/achieved_tasks_widget.dart';
+import 'package:todo_app/core/widgets/high_priority_tasks_widget.dart';
+import 'package:todo_app/core/widgets/tasks_items.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

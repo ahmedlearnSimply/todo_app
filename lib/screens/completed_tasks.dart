@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/util/color.dart';
-import 'package:todo_app/widgets/tasks_items.dart';
+import 'package:todo_app/core/widgets/tasks_items.dart';
 
 class CompletedTasks extends StatefulWidget {
   CompletedTasks({super.key});
