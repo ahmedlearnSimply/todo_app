@@ -24,6 +24,12 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(AppColor.green),
+            foregroundColor: WidgetStateProperty.all(AppColor.primaryText),
+          ),
+        ),
         switchTheme: SwitchThemeData(
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.selected)) {

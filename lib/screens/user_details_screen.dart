@@ -70,8 +70,6 @@ class UserDetailsScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: AppColor.primaryText,
-                  backgroundColor: AppColor.green,
                   fixedSize: Size(MediaQuery.of(context).size.width, 40),
                 ),
                 onPressed: () async {
