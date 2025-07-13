@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // important line for shared preferences
   final pref = await SharedPreferences.getInstance();
   await AppLocalStorage.init();
-  pref.clear();
+  // pref.clear();
   final isFirstTime = await AppLocalStorage.getKOnboarding() ?? false;
   runApp(MainApp(isFirstTime: isFirstTime));
 }
