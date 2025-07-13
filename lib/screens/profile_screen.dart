@@ -96,6 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Text(
                 _name,
                 style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
                   fontSize: 24,
                   fontWeight: FontWeight.w400,
                   color: AppColor.primaryText,
@@ -106,7 +107,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Center(
               child: Text(
                 _quote,
+                maxLines: 2,
                 style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   color: AppColor.secondaryText,
