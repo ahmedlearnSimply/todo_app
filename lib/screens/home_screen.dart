@@ -141,30 +141,39 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundImage: AssetImage("assets/images/ahmed.png"),
                   ),
                   Gap(10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Good Evening , $username",
-                        style: TextStyle(
-                          color: AppColor.primaryText,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+
+                          "Good Evening , $username",
+                          style: TextStyle(
+                            color: AppColor.primaryText,
+                            fontFamily: 'poppins',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "One task at a time.One step closer. ",
-                        style: TextStyle(
-                          color: AppColor.secondaryText,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
+                        Text(
+                          AppLocalStorage.getmotivationQuote()
+                              .toString()
+                              .trim(),
+                          maxLines: 1,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            color: AppColor.secondaryText,
+                            fontFamily: 'poppins',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Spacer(),
+                  SizedBox(width: 10),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
