@@ -21,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? username;
+  String? motivationQuote;
   bool? kOnboarding;
   List<TaskModel> allTasks = [];
   bool isLoading = false;
@@ -41,10 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void loadSavedData() async {
     final name = await AppLocalStorage.getName();
     final onboarding = await AppLocalStorage.getKOnboarding();
+    if (motivationQuote != null) {
+      motivationQuote = await AppLocalStorage.getmotivationQuote();
+    }
 
     setState(() {
       username = name ?? "Guest";
       kOnboarding = onboarding ?? false;
+      motivationQuote =
+          motivationQuote ?? "Don't Worry Every thing is will be good";
     });
   }
 
@@ -161,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           AppLocalStorage.getmotivationQuote()
                               .toString()
                               .trim(),
+
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
