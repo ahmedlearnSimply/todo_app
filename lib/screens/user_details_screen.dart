@@ -3,18 +3,31 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_app/core/learning/elevated_button.dart';
-import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/core/widgets/custom_text_form.dart';
 
-class UserDetailsScreen extends StatelessWidget {
-  UserDetailsScreen({super.key});
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController quoteController = TextEditingController();
+class UserDetailsScreen extends StatefulWidget {
+  UserDetailsScreen({super.key, required this.quote, required this.userName});
+  final String userName;
+  final String quote;
+
+  @override
+  State<UserDetailsScreen> createState() => _UserDetailsScreenState();
+}
+
+class _UserDetailsScreenState extends State<UserDetailsScreen> {
+  late TextEditingController userNameController;
+  late TextEditingController quoteController;
 
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    userNameController = TextEditingController(text: widget.userName);
+    quoteController = TextEditingController(text: widget.quote);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -15,8 +15,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   bool isDarkMode = true;
-  String _name = "user";
-  String _quote = "Don't Worry Every thing is will be good";
+  String? _name;
+  String? _quote;
   void loadUserData() {
     setState(() {
       _name = AppLocalStorage.getName() ?? "user";
@@ -28,8 +28,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
+    loadUserData();
     super.initState();
-    loadUserData(); // ✅ load values when screen first opens
   }
 
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Gap(2),
             Center(
               child: Text(
-                _name,
+                _name ?? "user",
                 style: TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontSize: 24,
@@ -106,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Center(
               child: Text(
-                _quote,
+                _quote ?? "Don't Worry Every thing is will be good",
                 maxLines: 2,
                 style: TextStyle(
                   overflow: TextOverflow.ellipsis,
@@ -138,7 +138,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
-                      return UserDetailsScreen();
+                      return UserDetailsScreen(
+                        userName: AppLocalStorage.getName().toString(),
+                        quote: AppLocalStorage.getmotivationQuote().toString(),
+                      );
                     },
                   ),
                 );
