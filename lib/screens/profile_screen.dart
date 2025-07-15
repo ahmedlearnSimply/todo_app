@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/user_details_screen.dart';
+import 'package:todo_app/screens/welcome_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -207,8 +209,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //Log out
             ListTile(
               contentPadding: EdgeInsets.zero,
-              onTap: () {
-                //Todo move user Details pages
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.remove(AppLocalStorage.motivationQuote);
+                prefs.remove(AppLocalStorage.usernameKey);
+                prefs.remove(AppLocalStorage.kOnboardingKey);
+                prefs.remove('tasks');
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => WelcomeScreen()),
+                  (route) => false,
+                );
               },
 
               title: Text(
