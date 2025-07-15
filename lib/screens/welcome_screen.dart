@@ -117,9 +117,10 @@ class WelcomeScreen extends StatelessWidget {
                         hintText: "e.g. Ahmed Adel",
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
-                            return "Enter Your Name";
+                            return "Please Enter Your Full Name";
+                          } else {
+                            return null;
                           }
-                          return null;
                         },
                       ),
 
@@ -146,6 +147,16 @@ class WelcomeScreen extends StatelessWidget {
                                 builder: (BuildContext context) {
                                   return MainScreen();
                                 },
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Please Enter Your Full Name",
+                                  style: TextStyle(fontFamily: 'poppins'),
+                                ),
+                                backgroundColor: AppColor.green,
                               ),
                             );
                           }

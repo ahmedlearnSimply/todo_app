@@ -72,7 +72,7 @@ class MainApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: isFirstTime ? MainScreen() : WelcomeScreen(),
+      home: !isFirstTime ? MainScreen() : WelcomeScreen(),
     );
   }
 }
