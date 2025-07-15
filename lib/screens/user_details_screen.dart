@@ -93,14 +93,12 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   if (_formKey.currentState?.validate() ?? false) {
                     final pref = await SharedPreferences.getInstance();
                     String userName = userNameController.text;
-                    String motivationQuote = quoteController.text;
-                    if (userName.isNotEmpty) {
-                      AppLocalStorage.saveName(userName);
-                    }
+                    String motivationQuote =
+                        quoteController.text ?? "motivationQuote";
 
-                    if (motivationQuote.isNotEmpty) {
-                      AppLocalStorage.savemotivationQuote(motivationQuote);
-                    }
+                    AppLocalStorage.saveName(userName);
+
+                    AppLocalStorage.savemotivationQuote(motivationQuote);
                     Navigator.pop(context);
                   }
                 },

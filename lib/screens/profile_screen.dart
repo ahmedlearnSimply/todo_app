@@ -140,7 +140,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     builder: (BuildContext context) {
                       return UserDetailsScreen(
                         userName: AppLocalStorage.getName().toString(),
-                        quote: AppLocalStorage.getmotivationQuote().toString(),
+                        //-----------------------------------//
+                        quote: _quote.toString(),
                       );
                     },
                   ),

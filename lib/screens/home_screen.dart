@@ -42,10 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void loadSavedData() async {
     final name = await AppLocalStorage.getName();
     final onboarding = await AppLocalStorage.getKOnboarding();
-    if (motivationQuote != null) {
-      motivationQuote = await AppLocalStorage.getmotivationQuote();
-    }
-
+    motivationQuote = await AppLocalStorage.getmotivationQuote();
     setState(() {
       username = name ?? "Guest";
       kOnboarding = onboarding ?? false;
@@ -164,10 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Text(
-                          AppLocalStorage.getmotivationQuote()
-                              .toString()
-                              .trim(),
-
+                          motivationQuote.toString(),
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,

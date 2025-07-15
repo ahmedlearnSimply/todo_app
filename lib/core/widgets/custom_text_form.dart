@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class CustomTextForm extends StatelessWidget {
@@ -17,6 +18,7 @@ class CustomTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: TextInputAction.done,
       validator: validator,
       maxLines: maxLines,
       controller: controller,
