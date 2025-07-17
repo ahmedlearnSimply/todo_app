@@ -9,10 +9,9 @@ import 'package:todo_app/screens/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // important line for shared preferences
-  final pref = await SharedPreferences.getInstance();
   await AppLocalStorage.init();
   // pref.clear();
-  final isFirstTime = await AppLocalStorage.getKOnboarding() ?? false;
+  final isFirstTime = AppLocalStorage.getKOnboarding() ?? false;
   runApp(MainApp(isFirstTime: isFirstTime));
 }
 
