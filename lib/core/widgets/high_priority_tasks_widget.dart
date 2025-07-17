@@ -1,13 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/high_priority_screen.dart';
-import 'package:todo_app/core/widgets/tasks_items.dart';
 
 class HighPriorityTasksWidget extends StatefulWidget {
   HighPriorityTasksWidget({
@@ -29,10 +27,9 @@ class HighPriorityTasksWidget extends StatefulWidget {
 class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
   @override
   Future<void> saveUpdatedTasks() async {
-    final pref = await SharedPreferences.getInstance();
     final updatedTasks =
         widget.tasks.map((element) => element.toJson()).toList();
-    pref.setString('tasks', jsonEncode(updatedTasks));
+    AppLocalStorage.setString('tasks', jsonEncode(updatedTasks));
   }
 
   void doneTasks(bool? value, int index) async {

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/core/widgets/tasks_items.dart';
 
@@ -27,9 +27,8 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
     setState(() {
       isLoading = true;
     });
-    final pref = await SharedPreferences.getInstance();
 
-    final finalTask = pref.getString('tasks');
+    final finalTask = AppLocalStorage.getString('tasks');
     if (finalTask != null) {
       final taskAfterDecode = jsonDecode(finalTask) as List<dynamic>;
 
@@ -81,10 +80,12 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
                       checkedTasks[index].isDone = value ?? false;
                     });
                     // Save changes and reload from shared preferences
-                    final pref = await SharedPreferences.getInstance();
                     final updatedTasks =
                         allTasks.map((e) => e.toJson()).toList();
-                    await pref.setString('tasks', jsonEncode(updatedTasks));
+                    await AppLocalStorage.setString(
+                      'tasks',
+                      jsonEncode(updatedTasks),
+                    );
                     _loadTask();
                   },
                 ),

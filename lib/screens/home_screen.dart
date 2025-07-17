@@ -4,14 +4,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/add_task.dart';
 import 'package:todo_app/core/widgets/achieved_tasks_widget.dart';
 import 'package:todo_app/core/widgets/high_priority_tasks_widget.dart';
-import 'package:todo_app/core/widgets/tasks_items.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,9 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
       isLoading = true;
     });
     // await Future.delayed(Duration(microseconds: 20)); : ! for loading but now i dont want it
-    final pref = await SharedPreferences.getInstance();
 
-    final finalTask = pref.getString('tasks');
+    final finalTask = AppLocalStorage.getString('tasks');
     if (finalTask != null) {
       final taskAfterDecode = jsonDecode(finalTask) as List<dynamic>;
 
@@ -86,9 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> saveUpdatedTasks() async {
-    final pref = await SharedPreferences.getInstance();
     final updatedTasks = allTasks.map((element) => element.toJson()).toList();
-    pref.setString('tasks', jsonEncode(updatedTasks));
+    AppLocalStorage.setString('tasks', jsonEncode(updatedTasks));
     calculateIndicator();
   }
 

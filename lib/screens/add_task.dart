@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/core/widgets/custom_text_form.dart';
 
@@ -134,8 +133,7 @@ class _AddTaskState extends State<AddTask> {
                           isHighPriority: isHighPriority,
                           id: DateTime.now().millisecondsSinceEpoch,
                         );
-                        final pref = await SharedPreferences.getInstance();
-                        final taskJson = pref.getString('tasks');
+                        final taskJson = AppLocalStorage.getString('tasks');
                         List<dynamic> taskList = [];
 
                         if (taskJson != null) {
@@ -145,7 +143,7 @@ class _AddTaskState extends State<AddTask> {
                         taskList.add(task.toJson());
 
                         final taskEncode = jsonEncode(taskList);
-                        await pref.setString('tasks', taskEncode);
+                        await AppLocalStorage.setString('tasks', taskEncode);
                         Navigator.pop(context);
                       }
                     },

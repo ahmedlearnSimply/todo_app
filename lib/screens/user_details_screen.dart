@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/core/widgets/custom_text_form.dart';
@@ -91,7 +88,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState?.validate() ?? false) {
-                    final pref = await SharedPreferences.getInstance();
                     String userName = userNameController.text;
                     String motivationQuote =
                         quoteController.text ?? "motivationQuote";

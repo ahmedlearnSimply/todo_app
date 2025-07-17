@@ -20,6 +20,10 @@ class AppLocalStorage {
     await _prefs.setString(key, value);
   }
 
+  static getString(String key) {
+    _prefs.getString(key);
+  }
+
   static Future<void> clearUserData() async {
     await _prefs.remove(motivationQuote);
     await _prefs.remove(usernameKey);
