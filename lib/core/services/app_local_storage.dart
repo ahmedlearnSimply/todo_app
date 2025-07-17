@@ -16,6 +16,13 @@ class AppLocalStorage {
     await _prefs.setString(usernameKey, name);
   }
 
+  static Future<void> clearUserData() async {
+    await _prefs.remove(motivationQuote);
+    await _prefs.remove(usernameKey);
+    await _prefs.remove(kOnboardingKey);
+    await _prefs.remove('tasks');
+  }
+
   static String? getName() {
     return _prefs.getString(usernameKey);
   }

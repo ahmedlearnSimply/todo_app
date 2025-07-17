@@ -210,12 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ListTile(
               contentPadding: EdgeInsets.zero,
               onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.remove(AppLocalStorage.motivationQuote);
-                prefs.remove(AppLocalStorage.usernameKey);
-                prefs.remove(AppLocalStorage.kOnboardingKey);
-                prefs.remove('tasks');
-
+                AppLocalStorage.clearUserData();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => WelcomeScreen()),
