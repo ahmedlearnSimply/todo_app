@@ -22,29 +22,13 @@ class CustomTextForm extends StatelessWidget {
       validator: validator,
       maxLines: maxLines,
       controller: controller,
-      cursorColor: Colors.white,
-      style: TextStyle(
-        color: Colors.white,
-        fontFamily: 'poppins',
-        fontSize: 18,
-      ),
+      style: Theme.of(context).textTheme.labelSmall,
 
+      // TextStyle(color: Colors.white, fontFamily: 'poppins', fontSize: 18),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
 
-          borderSide: BorderSide.none,
-        ),
-        fillColor: AppColor.surface,
-        filled: true,
         hintText: hintText,
-        hintStyle: TextStyle(
-          fontFamily: 'poppins',
-          color: Color(0xff6D6D6D),
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-        ),
       ),
     );
   }

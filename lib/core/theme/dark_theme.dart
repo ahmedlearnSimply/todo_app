@@ -7,6 +7,12 @@ ThemeData darkTheme = ThemeData(
 
   //Text Theme
   textTheme: TextTheme(
+    labelSmall: TextStyle(
+      color: Colors.white,
+      fontFamily: 'poppins',
+      fontSize: 18,
+      fontWeight: FontWeight.normal,
+    ),
     displayLarge: TextStyle(
       color: Colors.white,
       fontFamily: "plus",
@@ -26,7 +32,25 @@ ThemeData darkTheme = ThemeData(
       fontWeight: FontWeight.w400,
     ),
   ),
+  inputDecorationTheme: InputDecorationTheme(
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.redAccent, width: 0.7),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    fillColor: AppColor.surface,
+    filled: true,
+    hintStyle: TextStyle(
+      fontFamily: 'poppins',
+      color: Color(0xff6D6D6D),
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
 
+      borderSide: BorderSide.none,
+    ),
+  ),
   //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(

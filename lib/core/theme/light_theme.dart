@@ -3,10 +3,16 @@ import 'package:todo_app/core/util/color.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: Color(0xffF6F7F9),
 
   //Text Theme
   textTheme: TextTheme(
+    labelSmall: TextStyle(
+      color: Colors.black,
+      fontFamily: 'poppins',
+      fontSize: 18,
+      fontWeight: FontWeight.normal,
+    ),
     displayLarge: TextStyle(
       color: Color(0xff161F1B),
       fontFamily: "plus",
@@ -26,7 +32,36 @@ ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w400,
     ),
   ),
+  //inputDecoration Theme
+  inputDecorationTheme: InputDecorationTheme(
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.redAccent, width: 0.7),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xffD1DAD6), width: 0.7),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xffD1DAD6), width: 0.7),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    fillColor: Colors.white,
+    filled: true,
+    hintStyle: TextStyle(
+      fontFamily: 'poppins',
+      color: Color(0xff6D6D6D),
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
 
+      borderSide: BorderSide(color: Color(0xffD1DAD6), width: 0.7),
+    ),
+  ),
+
+  textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.black),
   //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
