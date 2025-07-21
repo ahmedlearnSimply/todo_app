@@ -21,7 +21,7 @@ class AppLocalStorage {
   }
 
   static getString(String key) {
-    _prefs.getString(key);
+    return _prefs.getString(key);
   }
 
   static Future<void> clearUserData() async {
