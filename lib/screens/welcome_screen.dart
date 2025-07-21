@@ -25,7 +25,6 @@ class WelcomeScreen extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.background,
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -87,12 +86,8 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Full Name",
-                            style: TextStyle(
-                              color: AppColor.primaryText,
-                              fontFamily: "poppins",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context).textTheme.displaySmall!
+                                .copyWith(fontFamily: 'poppins'),
                           ),
                         ],
                       ),

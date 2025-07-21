@@ -22,7 +22,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: darkTheme,
+      theme: lightTheme,
       debugShowCheckedModeBanner: false,
       home: isFirstTime ? WelcomeScreen() : MainScreen(),
     );
