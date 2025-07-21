@@ -3,14 +3,38 @@ import 'package:todo_app/core/util/color.dart';
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
+  scaffoldBackgroundColor: AppColor.background,
+
+  //Text Theme
+  textTheme: TextTheme(
+    displayLarge: TextStyle(
+      color: Colors.white,
+      fontFamily: "plus",
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+    ),
+    displayMedium: TextStyle(
+      color: AppColor.primaryText,
+      fontFamily: "plus",
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+    ),
+    displaySmall: TextStyle(
+      color: AppColor.primaryText,
+      fontFamily: "plus",
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
+  ),
+
+  //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(AppColor.green),
       foregroundColor: WidgetStateProperty.all(AppColor.primaryText),
     ),
   ),
-
-  scaffoldBackgroundColor: AppColor.background,
+  //Appbar Theme
   appBarTheme: AppBarTheme(
     centerTitle: true,
     elevation: 0,
