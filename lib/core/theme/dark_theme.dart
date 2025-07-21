@@ -2,12 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/util/color.dart';
 
 ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(AppColor.green),
       foregroundColor: WidgetStateProperty.all(AppColor.primaryText),
     ),
   ),
+
+  scaffoldBackgroundColor: AppColor.background,
+  appBarTheme: AppBarTheme(
+    centerTitle: true,
+    elevation: 0,
+    iconTheme: IconThemeData(color: AppColor.primaryText),
+    titleTextStyle: TextStyle(
+      fontSize: 20,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      color: AppColor.primaryText,
+    ),
+    surfaceTintColor: AppColor.background,
+    backgroundColor: AppColor.background,
+  ),
+  //Swith Theme
   switchTheme: SwitchThemeData(
     thumbColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
@@ -33,19 +50,5 @@ ThemeData darkTheme = ThemeData(
       }
       return 2;
     }),
-  ),
-  scaffoldBackgroundColor: AppColor.background,
-  appBarTheme: AppBarTheme(
-    centerTitle: false,
-    elevation: 0,
-    iconTheme: IconThemeData(color: AppColor.primaryText),
-    titleTextStyle: TextStyle(
-      fontSize: 20,
-      fontFamily: 'poppins',
-      fontWeight: FontWeight.w400,
-      color: AppColor.primaryText,
-    ),
-    surfaceTintColor: AppColor.background,
-    backgroundColor: AppColor.background,
   ),
 );

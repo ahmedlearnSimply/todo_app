@@ -92,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColor.background,
         floatingActionButton: SizedBox(
           height: 40,
           width: 168,

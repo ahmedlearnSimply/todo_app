@@ -48,13 +48,15 @@ class _CompletedTasksState extends State<CompletedTasks> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Completed Tasks",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              color: AppColor.primaryText,
-              fontFamily: 'poppins',
+          Center(
+            child: Text(
+              "Completed Tasks",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: AppColor.primaryText,
+                fontFamily: 'poppins',
+              ),
             ),
           ),
           Expanded(

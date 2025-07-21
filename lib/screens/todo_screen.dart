@@ -50,13 +50,15 @@ class _TodoScreenState extends State<TodoScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-          Text(
-            "To Do Tasks",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              color: AppColor.primaryText,
-              fontFamily: 'poppins',
+          Center(
+            child: Text(
+              "To Do Tasks",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: AppColor.primaryText,
+                fontFamily: 'poppins',
+              ),
             ),
           ),
           Expanded(

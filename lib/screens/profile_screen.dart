@@ -42,13 +42,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 18.0),
-              child: Text(
-                "My Profile",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
+              child: Center(
+                child: Text(
+                  "My Profile",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.primaryText,
+                    fontFamily: 'poppins',
+                  ),
                 ),
               ),
             ),

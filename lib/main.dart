@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/dark_theme.dart';
+import 'package:todo_app/core/theme/light_theme.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/main_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
@@ -22,7 +23,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: darkTheme,
+      theme: lightTheme,
       debugShowCheckedModeBanner: false,
       home: isFirstTime ? MainScreen() : WelcomeScreen(),
     );
