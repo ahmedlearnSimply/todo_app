@@ -4,6 +4,7 @@ import 'package:todo_app/core/util/color.dart';
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: Color(0xffF6F7F9),
+  colorScheme: ColorScheme.light(primaryContainer: Color(0xffFFFFFF)),
 
   //Text Theme
   textTheme: TextTheme(
