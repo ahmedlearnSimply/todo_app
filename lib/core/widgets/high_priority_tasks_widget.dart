@@ -84,13 +84,7 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                             padding: const EdgeInsets.only(left: 5.0),
                             child: Checkbox(
                               activeColor: AppColor.green,
-                              side: BorderSide(
-                                color:
-                                    Theme.of(
-                                      context,
-                                    ).colorScheme.onSurface, // border color
-                                width: 2, // border width
-                              ),
+                              side: Theme.of(context).checkboxTheme.side,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),

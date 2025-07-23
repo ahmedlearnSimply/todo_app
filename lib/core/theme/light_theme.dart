@@ -7,6 +7,16 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.light(primaryContainer: Color(0xffFFFFFF)),
   disabledColor: Color(0xff6A6A6A),
   // onBackground: Color(0xff161F1B),
+
+  //check box theme
+  checkboxTheme: CheckboxThemeData(
+    checkColor: WidgetStateProperty.all(Colors.white),
+
+    side: BorderSide(
+      color: Color(0xffD1DAD6),
+      width: 2, // border width
+    ),
+  ),
   //Text Theme
   textTheme: TextTheme(
     titleLarge: TextStyle(

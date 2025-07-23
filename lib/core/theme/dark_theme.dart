@@ -6,6 +6,15 @@ ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: AppColor.background,
   colorScheme: ColorScheme.dark(primaryContainer: AppColor.surface),
   disabledColor: Color(0xff6A6A6A),
+
+  //check box theme
+  checkboxTheme: CheckboxThemeData(
+    checkColor: WidgetStateProperty.all(Colors.white),
+    side: BorderSide(
+      color: Color(0xff6E6E6E),
+      width: 2, // border width
+    ),
+  ),
   //Text Theme
   textTheme: TextTheme(
     titleLarge: TextStyle(
