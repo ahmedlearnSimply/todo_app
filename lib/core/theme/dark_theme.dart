@@ -5,6 +5,7 @@ ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColor.background,
   colorScheme: ColorScheme.dark(primaryContainer: AppColor.surface),
+  disabledColor: Color(0xff6A6A6A),
   //Text Theme
   textTheme: TextTheme(
     titleLarge: TextStyle(

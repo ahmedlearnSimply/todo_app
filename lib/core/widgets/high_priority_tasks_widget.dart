@@ -47,8 +47,14 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColor.surface,
+        color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color:
+              Theme.of(context).brightness == Brightness.dark
+                  ? AppColor.background
+                  : Color(0xffD1DAD6),
+        ),
       ),
 
       child: Row(
@@ -63,12 +69,9 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                   padding: const EdgeInsets.only(top: 16, left: 16, bottom: 8),
                   child: Text(
                     "High Priority Tasks",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'poppins',
-                      color: AppColor.green,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium!.copyWith(color: AppColor.green),
                   ),
                 ),
                 ...widget.tasks.reversed
@@ -81,6 +84,13 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                             padding: const EdgeInsets.only(left: 5.0),
                             child: Checkbox(
                               activeColor: AppColor.green,
+                              side: BorderSide(
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface, // border color
+                                width: 2, // border width
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
@@ -96,22 +106,24 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                           Expanded(
                             child: Text(
                               element.taskName,
-                              style: TextStyle(
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleMedium!.copyWith(
                                 color:
                                     element.isDone
-                                        ? Color(0xffA0A0A0)
-                                        : AppColor.primaryText,
-                                fontFamily: 'poppins',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-
+                                        ? Theme.of(context).disabledColor
+                                        : Theme.of(
+                                          context,
+                                        ).colorScheme.onSurface,
                                 overflow: TextOverflow.ellipsis,
                                 decoration:
                                     element.isDone
                                         ? TextDecoration.lineThrough
                                         : TextDecoration.none,
-                                decorationColor: Color(0xffA0A0A0),
+                                decorationColor:
+                                    Theme.of(context).disabledColor,
                               ),
+
                               maxLines: 1,
                             ),
                           ),

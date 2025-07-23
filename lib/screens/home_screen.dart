@@ -239,12 +239,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: Text(
                         "My Tasks",
-                        style: TextStyle(
-                          color: AppColor.primaryText,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20,
-                        ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(fontSize: 20),
                       ),
                     ),
                     SliverToBoxAdapter(child: Gap(16)),
@@ -258,7 +255,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 72,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: AppColor.surface,
+                                border: Border.all(
+                                  color:
+                                      Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? AppColor.background
+                                          : Color(0xffD1DAD6),
+                                ),
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).colorScheme.primaryContainer,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Row(
@@ -285,25 +292,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
+                                        //-------------------//
                                         Text(
                                           allTasks[index].taskName,
-
-                                          style: TextStyle(
+                                          //!-----//
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.titleMedium!.copyWith(
                                             color:
                                                 allTasks[index].isDone
-                                                    ? Color(0xffA0A0A0)
-                                                    : AppColor.primaryText,
-                                            fontFamily: 'poppins',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16,
-
+                                                    ? Theme.of(
+                                                      context,
+                                                    ).disabledColor
+                                                    : Theme.of(
+                                                      context,
+                                                    ).colorScheme.onSurface,
                                             overflow: TextOverflow.ellipsis,
                                             decoration:
                                                 allTasks[index].isDone
                                                     ? TextDecoration.lineThrough
                                                     : TextDecoration.none,
-                                            decorationColor: Color(0xffA0A0A0),
+                                            decorationColor:
+                                                Theme.of(context).disabledColor,
                                           ),
+
+                                          //!-----//
                                           maxLines: 1,
                                         ),
                                         if (allTasks[index].taskDescription !=

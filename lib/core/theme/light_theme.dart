@@ -5,7 +5,8 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: Color(0xffF6F7F9),
   colorScheme: ColorScheme.light(primaryContainer: Color(0xffFFFFFF)),
-
+  disabledColor: Color(0xff6A6A6A),
+  // onBackground: Color(0xff161F1B),
   //Text Theme
   textTheme: TextTheme(
     titleLarge: TextStyle(
