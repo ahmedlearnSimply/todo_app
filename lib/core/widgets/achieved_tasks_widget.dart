@@ -20,7 +20,10 @@ class AchievedTasks extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       width: double.infinity,
-      decoration: BoxDecoration(color: AppColor.surface, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        color: AppColor.surface,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

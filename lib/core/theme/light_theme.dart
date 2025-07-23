@@ -7,6 +7,24 @@ ThemeData lightTheme = ThemeData(
 
   //Text Theme
   textTheme: TextTheme(
+    titleLarge: TextStyle(
+      color: Color(0xff161F1B),
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      fontSize: 32,
+    ),
+    titleMedium: TextStyle(
+      color: Color(0xff161F1B),
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+    ),
+    titleSmall: TextStyle(
+      color: Color(0xff3A4640),
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+    ),
     labelSmall: TextStyle(
       color: Colors.black,
       fontFamily: 'poppins',

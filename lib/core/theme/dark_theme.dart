@@ -7,6 +7,24 @@ ThemeData darkTheme = ThemeData(
 
   //Text Theme
   textTheme: TextTheme(
+    titleLarge: TextStyle(
+      color: AppColor.primaryText,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      fontSize: 32,
+    ),
+    titleMedium: TextStyle(
+      color: AppColor.primaryText,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+    ),
+    titleSmall: TextStyle(
+      color: Color(0xffC6C6C6),
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+    ),
     labelSmall: TextStyle(
       color: Colors.white,
       fontFamily: 'poppins',
@@ -32,6 +50,8 @@ ThemeData darkTheme = ThemeData(
       fontWeight: FontWeight.w400,
     ),
   ),
+
+  //text input decoration
   inputDecorationTheme: InputDecorationTheme(
     errorBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.redAccent, width: 0.7),

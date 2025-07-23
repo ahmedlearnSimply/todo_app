@@ -148,23 +148,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           overflow: TextOverflow.ellipsis,
 
                           "Good Evening , $username",
-                          style: TextStyle(
-                            color: AppColor.primaryText,
-                            fontFamily: 'poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
                           motivationQuote.toString(),
                           maxLines: 1,
-                          style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            color: AppColor.secondaryText,
-                            fontFamily: 'poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
                     ),
@@ -202,23 +191,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             "Yuhuu ,Your work Is ",
-                            style: TextStyle(
-                              color: AppColor.primaryText,
-                              fontFamily: 'poppins',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 32,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Row(
                             children: [
                               Text(
                                 "almost done ! ",
-                                style: TextStyle(
-                                  color: AppColor.primaryText,
-                                  fontFamily: 'poppins',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 32,
-                                ),
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                               SvgPicture.asset(
                                 "assets/images/waving_hand.svg",
