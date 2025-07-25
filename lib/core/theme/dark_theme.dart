@@ -5,8 +5,11 @@ ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColor.background,
   colorScheme: ColorScheme.dark(primaryContainer: AppColor.surface),
-  disabledColor: Color(0xff6A6A6A),
-
+  disabledColor: Color(0xffA0A0A0),
+  hintColor: Color(0xffFFFCFC),
+  cardColor: Color(0xffA0A0A0),
+  primaryColorDark: Color(0xffC6C6C6),
+  primaryColor: Color(0xff282828),
   //check box theme
   checkboxTheme: CheckboxThemeData(
     checkColor: WidgetStateProperty.all(Colors.white),
@@ -129,4 +132,6 @@ ThemeData darkTheme = ThemeData(
       return 2;
     }),
   ),
+
+  shadowColor: Color(0xff6E6E6E),
 );

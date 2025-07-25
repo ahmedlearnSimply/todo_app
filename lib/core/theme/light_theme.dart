@@ -6,6 +6,12 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Color(0xffF6F7F9),
   colorScheme: ColorScheme.light(primaryContainer: Color(0xffFFFFFF)),
   disabledColor: Color(0xff6A6A6A),
+  hintColor: Color(0xff161F1B),
+  primaryColorDark: Color(0xff3A4640),
+  cardColor: Color(0xff6A6A6A),
+  primaryColor: Color(0xffFFFFFF),
+  shadowColor: Color(0xffD1DAD6),
+
   // onBackground: Color(0xff161F1B),
 
   //check box theme

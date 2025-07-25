@@ -106,9 +106,7 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                                 color:
                                     element.isDone
                                         ? Theme.of(context).disabledColor
-                                        : Theme.of(
-                                          context,
-                                        ).colorScheme.onSurface,
+                                        : Theme.of(context).hintColor,
                                 overflow: TextOverflow.ellipsis,
                                 decoration:
                                     element.isDone
@@ -149,8 +147,11 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColor.surface,
-                  border: Border.all(color: Color(0xff6E6E6E), width: 1),
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Theme.of(context).shadowColor,
+                    width: 1,
+                  ),
                 ),
 
                 child: Padding(
@@ -159,6 +160,10 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
                     "assets/images/arrow2.svg",
                     width: 10,
                     height: 10,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).primaryColorDark,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),

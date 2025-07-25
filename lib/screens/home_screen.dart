@@ -309,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     ).disabledColor
                                                     : Theme.of(
                                                       context,
-                                                    ).colorScheme.onSurface,
+                                                    ).hintColor,
                                             overflow: TextOverflow.ellipsis,
                                             decoration:
                                                 allTasks[index].isDone
@@ -326,16 +326,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                             "")
                                           Text(
                                             allTasks[index].taskDescription,
-                                            style: TextStyle(
-                                              color:
-                                                  allTasks[index].isDone
-                                                      ? Color(0xffA0A0A0)
-                                                      : AppColor.secondaryText,
-                                              fontFamily: 'poppins',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
+                                            style:
+                                                Theme.of(context)
+                                                    .textTheme
+                                                    .titleSmall!
+                                                    .copyWith(),
+
                                             maxLines: 1,
                                           ),
                                       ],
@@ -349,8 +345,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Icons.more_vert,
                                       color:
                                           allTasks[index].isDone
-                                              ? Color(0xffA0A0A0)
-                                              : Color(0xffC6C6C6),
+                                              ? Theme.of(context).cardColor
+                                              : Theme.of(
+                                                context,
+                                              ).primaryColorDark,
                                     ),
                                   ),
                                   Gap(5),

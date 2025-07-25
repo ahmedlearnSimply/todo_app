@@ -6,4 +6,5 @@ class AppColor {
   static final Color secondaryText = Color(0xffC6C6C6);
   static final Color green = Color(0xff15B86C);
   static final Color surface = Color(0xff282828);
+  static final Color desColor = Color(0xff3A4640);
 }
