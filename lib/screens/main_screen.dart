@@ -14,7 +14,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> screens = [HomeScreen(), TodoScreen(), CompletedTasks(), ProfileScreen()];
+  List<Widget> screens = [
+    HomeScreen(),
+    TodoScreen(),
+    CompletedTasks(),
+    ProfileScreen(),
+  ];
   int _currentIndex = 0;
 
   @override
@@ -41,7 +46,10 @@ class _MainScreenState extends State<MainScreen> {
                 colorFilter:
                     _currentIndex == 0
                         ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+                        : ColorFilter.mode(
+                          AppColor.primaryText,
+                          BlendMode.srcIn,
+                        ),
               ),
               label: "Home",
             ),
@@ -51,7 +59,10 @@ class _MainScreenState extends State<MainScreen> {
                 colorFilter:
                     _currentIndex == 1
                         ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+                        : ColorFilter.mode(
+                          AppColor.primaryText,
+                          BlendMode.srcIn,
+                        ),
               ),
               label: "To Do",
             ),
@@ -61,7 +72,10 @@ class _MainScreenState extends State<MainScreen> {
                 colorFilter:
                     _currentIndex == 2
                         ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+                        : ColorFilter.mode(
+                          AppColor.primaryText,
+                          BlendMode.srcIn,
+                        ),
               ),
               label: "Completed",
             ),
@@ -71,7 +85,10 @@ class _MainScreenState extends State<MainScreen> {
                 colorFilter:
                     _currentIndex == 3
                         ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(AppColor.primaryText, BlendMode.srcIn),
+                        : ColorFilter.mode(
+                          AppColor.primaryText,
+                          BlendMode.srcIn,
+                        ),
               ),
               label: "Profile",
             ),

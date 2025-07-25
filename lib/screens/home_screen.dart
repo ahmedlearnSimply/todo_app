@@ -159,20 +159,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(width: 10),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: AppColor.surface,
-                    ),
-                    width: 34,
-                    height: 34,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset(
-                        "assets/images/sun.svg",
-                        colorFilter: ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: AppColor.surface,
+                      ),
+                      width: 34,
+                      height: 34,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: SvgPicture.asset(
+                          "assets/images/sun.svg",
+                          colorFilter: ColorFilter.mode(
+                            AppColor.primaryText,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
