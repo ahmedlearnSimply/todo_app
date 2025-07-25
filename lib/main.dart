@@ -15,16 +15,26 @@ void main() async {
   runApp(MainApp(isFirstTime: isFirstTime));
 }
 
+//for Dark mode
+ValueNotifier<ThemeMode> valueNotifier = ValueNotifier(ThemeMode.dark);
+
 class MainApp extends StatelessWidget {
   final bool isFirstTime;
   MainApp({super.key, required this.isFirstTime});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: lightTheme,
-      debugShowCheckedModeBanner: false,
-      home: isFirstTime ? MainScreen() : WelcomeScreen(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: valueNotifier,
+      builder: (context, ThemeMode value, Widget? child) {
+        return MaterialApp(
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: value,
+          debugShowCheckedModeBanner: false,
+          home: isFirstTime ? MainScreen() : WelcomeScreen(),
+        );
+      },
     );
   }
 }

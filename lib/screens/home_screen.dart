@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/main.dart';
 import 'package:todo_app/screens/add_task.dart';
 import 'package:todo_app/core/widgets/achieved_tasks_widget.dart';
 import 'package:todo_app/core/widgets/high_priority_tasks_widget.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isDarkMode = valueNotifier.value == ThemeMode.dark;
   String? username;
   String? motivationQuote;
   bool? kOnboarding;
@@ -159,21 +161,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(width: 10),
+                  //!--------------------------------------------------------!//
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        isDarkMode = !isDarkMode;
+                        valueNotifier.value =
+                            isDarkMode ? ThemeMode.dark : ThemeMode.light;
+                      });
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: AppColor.surface,
+                        color: Theme.of(context).primaryColor,
                       ),
                       width: 34,
                       height: 34,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          isDarkMode = !isDarkMode;
+                          valueNotifier.value =
+                              isDarkMode ? ThemeMode.dark : ThemeMode.light;
+                        },
                         icon: SvgPicture.asset(
-                          "assets/images/sun.svg",
+                          isDarkMode
+                              ? "assets/images/sun.svg"
+                              : "assets/images/moon.svg",
                           colorFilter: ColorFilter.mode(
-                            AppColor.primaryText,
+                            Theme.of(context).primaryColorDark,
                             BlendMode.srcIn,
                           ),
                         ),

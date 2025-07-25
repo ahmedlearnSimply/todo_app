@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
+import 'package:todo_app/core/theme/dark_theme.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/main.dart';
 import 'package:todo_app/screens/user_details_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
 
@@ -59,9 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      //? Todo : put the logic of how can user change the photo
-                    },
+                    onTap: () {},
                     child: Stack(
                       children: [
                         CircleAvatar(
@@ -183,9 +183,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               trailing: Switch(
                 value: isDarkMode,
-                onChanged: (value) {
+                onChanged: (bool value) {
                   setState(() {
                     isDarkMode = value;
+
+                    if (isDarkMode) {
+                      valueNotifier.value = ThemeMode.dark;
+                    } else {
+                      valueNotifier.value = ThemeMode.light;
+                    }
                   });
                 },
               ),
