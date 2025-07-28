@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isDarkMode = valueNotifier.value == ThemeMode.dark;
+  bool isDarkMode = AppLocalStorage.getBool(AppLocalStorage.theme);
   String? username;
   String? motivationQuote;
   bool? kOnboarding;
@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     loadSavedData();
     _loadTask();
+    isDarkMode = AppLocalStorage.getBool(AppLocalStorage.theme) ?? true;
   }
 
   void loadSavedData() async {
@@ -163,16 +164,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(width: 10),
                   //!--------------------------------------------------------!//
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       setState(() {
                         isDarkMode = !isDarkMode;
                         valueNotifier.value =
                             isDarkMode ? ThemeMode.dark : ThemeMode.light;
-                        AppLocalStorage.setBool(
-                          AppLocalStorage.theme,
-                          isDarkMode,
-                        );
                       });
+                      await AppLocalStorage.setBool(
+                        AppLocalStorage.theme,
+                        isDarkMode,
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -181,13 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       width: 34,
                       height: 34,
-                      child: IconButton(
-                        onPressed: () {
-                          isDarkMode = !isDarkMode;
-                          valueNotifier.value =
-                              isDarkMode ? ThemeMode.dark : ThemeMode.light;
-                        },
-                        icon: SvgPicture.asset(
+                      child: Center(
+                        child: SvgPicture.asset(
                           isDarkMode
                               ? "assets/images/sun.svg"
                               : "assets/images/moon.svg",
