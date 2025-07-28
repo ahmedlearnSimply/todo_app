@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
+import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/main.dart';
 import 'package:todo_app/screens/add_task.dart';
@@ -164,16 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(width: 10),
                   //!--------------------------------------------------------!//
                   GestureDetector(
-                    onTap: () async {
-                      setState(() {
-                        isDarkMode = !isDarkMode;
-                        valueNotifier.value =
-                            isDarkMode ? ThemeMode.dark : ThemeMode.light;
-                      });
-                      await AppLocalStorage.setBool(
-                        AppLocalStorage.theme,
-                        isDarkMode,
-                      );
+                    onTap: () {
+                      ThemeController.toggleTheme();
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -184,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 34,
                       child: Center(
                         child: SvgPicture.asset(
-                          isDarkMode
+                          ThemeController.valueNotifier.value == ThemeMode.dark
                               ? "assets/images/sun.svg"
                               : "assets/images/moon.svg",
                           colorFilter: ColorFilter.mode(

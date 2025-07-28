@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
-import 'package:todo_app/core/theme/dark_theme.dart';
+import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/main.dart';
 import 'package:todo_app/screens/user_details_screen.dart';
@@ -17,7 +17,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
-  bool isDarkMode = true;
   String? _name;
   String? _quote;
   void loadUserData() {
@@ -181,19 +180,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ListTile(
               contentPadding: EdgeInsets.zero,
 
-              trailing: Switch(
-                value: AppLocalStorage.getBool(AppLocalStorage.theme) ?? true,
-                onChanged: (bool value) async {
-                  setState(() {
-                    isDarkMode = value;
-
-                    if (!isDarkMode) {
-                      valueNotifier.value = ThemeMode.light;
-                    } else {
-                      valueNotifier.value = ThemeMode.dark;
-                    }
-                  });
-                  await AppLocalStorage.setBool(AppLocalStorage.theme, value);
+              trailing: ValueListenableBuilder(
+                valueListenable: ThemeController.valueNotifier,
+                builder: (BuildContext context, value, Widget? child) {
+                  return Switch(
+                    value: value == ThemeMode.dark,
+                    onChanged: (bool value) {
+                      ThemeController.toggleTheme();
+                    },
+                  );
                 },
               ),
               title: Text(

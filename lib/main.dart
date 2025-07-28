@@ -4,25 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/dark_theme.dart';
 import 'package:todo_app/core/theme/light_theme.dart';
+import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/screens/main_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // important line for shared preferences
   await AppLocalStorage.init();
-  bool isDark = await AppLocalStorage.getBool(AppLocalStorage.theme) ?? true;
-  if (isDark) {
-    valueNotifier.value = ThemeMode.dark;
-  } else {
-    valueNotifier.value = ThemeMode.light;
-  }
+  ThemeController().init();
   // pref.clear();
   final isFirstTime = AppLocalStorage.getKOnboarding() ?? false;
   runApp(MainApp(isFirstTime: isFirstTime));
 }
 
 //for Dark mode
-ValueNotifier<ThemeMode> valueNotifier = ValueNotifier(ThemeMode.dark);
+// ValueNotifier<ThemeMode> valueNotifier = ValueNotifier(ThemeMode.dark);
 
 class MainApp extends StatelessWidget {
   final bool isFirstTime;
@@ -31,7 +27,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
-      valueListenable: valueNotifier,
+      valueListenable: ThemeController.valueNotifier,
       builder: (context, ThemeMode value, Widget? child) {
         return MaterialApp(
           theme: lightTheme,
