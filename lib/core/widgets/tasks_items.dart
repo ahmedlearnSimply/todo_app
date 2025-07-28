@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/models/task_model.dart';
+import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/core/util/color.dart';
 
 class TasksItems extends StatelessWidget {
@@ -22,12 +23,7 @@ class TasksItems extends StatelessWidget {
       return Center(
         child: Text(
           emptyMessage ?? "No Task Found",
-          style: TextStyle(
-            color: AppColor.primaryText,
-            fontFamily: 'poppins',
-            fontWeight: FontWeight.w400,
-            fontSize: 26,
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 26),
         ),
       );
     }
@@ -42,8 +38,14 @@ class TasksItems extends StatelessWidget {
             height: 72,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColor.surface,
+              color: Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color:
+                    ThemeController.valueNotifier.value == ThemeMode.dark
+                        ? AppColor.background
+                        : Color(0xffD1DAD6),
+              ),
             ),
             child: Row(
               children: [
@@ -51,7 +53,9 @@ class TasksItems extends StatelessWidget {
                   padding: const EdgeInsets.all(5.0),
                   child: Checkbox(
                     activeColor: AppColor.green,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                     value: tasks[index].isDone,
 
                     onChanged: (bool? value) {
@@ -67,32 +71,31 @@ class TasksItems extends StatelessWidget {
                     children: [
                       Text(
                         tasks[index].taskName,
-
-                        style: TextStyle(
-                          color: tasks[index].isDone ? Color(0xffA0A0A0) : AppColor.primaryText,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-
+                        //!-----//
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(
+                          color:
+                              tasks[index].isDone
+                                  ? Theme.of(context).disabledColor
+                                  : Theme.of(context).hintColor,
                           overflow: TextOverflow.ellipsis,
                           decoration:
                               tasks[index].isDone
                                   ? TextDecoration.lineThrough
                                   : TextDecoration.none,
-                          decorationColor: Color(0xffA0A0A0),
+                          decorationColor: Theme.of(context).disabledColor,
                         ),
                         maxLines: 1,
                       ),
                       if (tasks[index].taskDescription != "")
                         Text(
                           tasks[index].taskDescription,
-                          style: TextStyle(
-                            color: tasks[index].isDone ? Color(0xffA0A0A0) : AppColor.secondaryText,
-                            fontFamily: 'poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                          style:
+                              Theme.of(
+                                context,
+                              ).textTheme.titleSmall!.copyWith(),
+
                           maxLines: 1,
                         ),
                     ],
@@ -104,7 +107,10 @@ class TasksItems extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(
                     Icons.more_vert,
-                    color: tasks[index].isDone ? Color(0xffA0A0A0) : Color(0xffC6C6C6),
+                    color:
+                        tasks[index].isDone
+                            ? Theme.of(context).cardColor
+                            : Theme.of(context).primaryColorDark,
                   ),
                 ),
                 Gap(5),

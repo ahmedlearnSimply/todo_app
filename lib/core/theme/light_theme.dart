@@ -114,7 +114,7 @@ ThemeData lightTheme = ThemeData(
       fontSize: 20,
       fontFamily: 'poppins',
       fontWeight: FontWeight.w400,
-      color: AppColor.primaryText,
+      color: Color(0xff161F1B),
     ),
     surfaceTintColor: AppColor.background,
     backgroundColor: AppColor.background,

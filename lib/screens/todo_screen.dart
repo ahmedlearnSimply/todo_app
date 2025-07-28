@@ -53,12 +53,7 @@ class _TodoScreenState extends State<TodoScreen> {
           Center(
             child: Text(
               "To Do Tasks",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: AppColor.primaryText,
-                fontFamily: 'poppins',
-              ),
+              style: Theme.of(context).appBarTheme.titleTextStyle,
             ),
           ),
           Expanded(

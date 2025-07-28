@@ -51,12 +51,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
           Center(
             child: Text(
               "Completed Tasks",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: AppColor.primaryText,
-                fontFamily: 'poppins',
-              ),
+              style: Theme.of(context).appBarTheme.titleTextStyle,
             ),
           ),
           Expanded(
