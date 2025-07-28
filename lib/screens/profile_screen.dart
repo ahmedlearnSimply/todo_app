@@ -182,17 +182,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               contentPadding: EdgeInsets.zero,
 
               trailing: Switch(
-                value: isDarkMode,
-                onChanged: (bool value) {
+                value: AppLocalStorage.getBool(AppLocalStorage.theme) ?? true,
+                onChanged: (bool value) async {
                   setState(() {
                     isDarkMode = value;
 
-                    if (isDarkMode) {
-                      valueNotifier.value = ThemeMode.dark;
-                    } else {
+                    if (!isDarkMode) {
                       valueNotifier.value = ThemeMode.light;
+                    } else {
+                      valueNotifier.value = ThemeMode.dark;
                     }
                   });
+                  await AppLocalStorage.setBool(AppLocalStorage.theme, value);
                 },
               ),
               title: Text(

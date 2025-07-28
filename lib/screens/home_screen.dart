@@ -168,6 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         isDarkMode = !isDarkMode;
                         valueNotifier.value =
                             isDarkMode ? ThemeMode.dark : ThemeMode.light;
+                        AppLocalStorage.setBool(
+                          AppLocalStorage.theme,
+                          isDarkMode,
+                        );
                       });
                     },
                     child: Container(

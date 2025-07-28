@@ -10,6 +10,12 @@ import 'package:todo_app/screens/welcome_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // important line for shared preferences
   await AppLocalStorage.init();
+  bool isDark = await AppLocalStorage.getBool(AppLocalStorage.theme) ?? true;
+  if (isDark) {
+    valueNotifier.value = ThemeMode.dark;
+  } else {
+    valueNotifier.value = ThemeMode.light;
+  }
   // pref.clear();
   final isFirstTime = AppLocalStorage.getKOnboarding() ?? false;
   runApp(MainApp(isFirstTime: isFirstTime));
