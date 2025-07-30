@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_app/core/util/color.dart';
 
 ThemeData darkTheme = ThemeData(
@@ -101,15 +102,15 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     centerTitle: true,
     elevation: 0,
-    iconTheme: IconThemeData(color: AppColor.primaryText),
     titleTextStyle: TextStyle(
       fontSize: 20,
       fontFamily: 'poppins',
       fontWeight: FontWeight.w400,
       color: AppColor.primaryText,
     ),
-    surfaceTintColor: AppColor.background,
+    surfaceTintColor: AppColor.primaryText,
     backgroundColor: AppColor.background,
+    systemOverlayStyle: SystemUiOverlayStyle.light,
   ),
   //Swith Theme
   switchTheme: SwitchThemeData(
@@ -141,4 +142,10 @@ ThemeData darkTheme = ThemeData(
 
   shadowColor: Color(0xff6E6E6E),
   iconTheme: IconThemeData(color: AppColor.primaryText),
+  dividerTheme: DividerThemeData(color: Color(0xff6E6E6E)),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: Colors.white,
+    selectionColor: const Color.fromARGB(255, 3, 156, 82),
+    selectionHandleColor: const Color.fromARGB(255, 3, 156, 82),
+  ),
 );

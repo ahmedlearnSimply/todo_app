@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/dark_theme.dart';
 import 'package:todo_app/core/theme/light_theme.dart';
@@ -14,6 +15,7 @@ void main() async {
   ThemeController().init();
   // pref.clear();
   final isFirstTime = AppLocalStorage.getKOnboarding() ?? false;
+
   runApp(MainApp(isFirstTime: isFirstTime));
 }
 

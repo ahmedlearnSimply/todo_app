@@ -103,8 +103,11 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
 
-  textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.black),
-  //elevatedButton Theme
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: Colors.black,
+    selectionColor: const Color.fromARGB(255, 117, 240, 181),
+    selectionHandleColor: const Color.fromARGB(255, 117, 240, 181),
+  ), //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(AppColor.green),
@@ -115,15 +118,16 @@ ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     centerTitle: true,
     elevation: 0,
-    iconTheme: IconThemeData(color: AppColor.primaryText),
+    iconTheme: IconThemeData(color: Color(0xff161F1B)),
     titleTextStyle: TextStyle(
       fontSize: 20,
       fontFamily: 'poppins',
       fontWeight: FontWeight.w400,
       color: Color(0xff161F1B),
     ),
-    surfaceTintColor: AppColor.background,
-    backgroundColor: AppColor.background,
+    surfaceTintColor: AppColor.primaryText,
+    backgroundColor: Color(0xffF6F7F9),
+    //Color(0xffF6F7F9)
   ),
   //Swith Theme
   switchTheme: SwitchThemeData(
@@ -153,4 +157,6 @@ ThemeData lightTheme = ThemeData(
     }),
   ),
   iconTheme: IconThemeData(color: Color(0xff161F1B)),
+
+  dividerTheme: DividerThemeData(color: Color(0xffD1DAD6)),
 );
