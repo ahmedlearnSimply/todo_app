@@ -4,12 +4,16 @@ import 'package:todo_app/core/util/color.dart';
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColor.background,
-  colorScheme: ColorScheme.dark(primaryContainer: AppColor.surface),
+  colorScheme: ColorScheme.dark(
+    primaryContainer: AppColor.surface,
+    secondary: Color(0xff282828),
+  ),
   disabledColor: Color(0xffA0A0A0),
   hintColor: Color(0xffFFFCFC),
   cardColor: Color(0xffA0A0A0),
   primaryColorDark: Color(0xffC6C6C6),
   primaryColor: Color(0xff282828),
+
   //check box theme
   checkboxTheme: CheckboxThemeData(
     checkColor: WidgetStateProperty.all(Colors.white),
@@ -135,4 +139,5 @@ ThemeData darkTheme = ThemeData(
   ),
 
   shadowColor: Color(0xff6E6E6E),
+  iconTheme: IconThemeData(color: AppColor.primaryText),
 );

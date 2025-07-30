@@ -58,12 +58,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onTap: () {},
                     child: Stack(
                       children: [
-                        CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage(
-                            "assets/images/ahmed.png",
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color:
+                                  ThemeController.valueNotifier.value ==
+                                          ThemeMode.light
+                                      ? Color(0xffD1DAD6)
+                                      : Colors.transparent,
+                              width: 1,
+                            ),
                           ),
-                          backgroundColor: Colors.transparent,
+                          child: CircleAvatar(
+                            radius: 60,
+                            backgroundImage: AssetImage(
+                              "assets/images/boy.png",
+                            ),
+                            backgroundColor: Colors.transparent,
+                          ),
                         ),
                         Positioned(
                           bottom: 0,
@@ -72,14 +85,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 45,
                             height: 45,
                             decoration: BoxDecoration(
-                              color: AppColor.surface,
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(60),
+                              border: Border.all(
+                                color:
+                                    ThemeController.valueNotifier.value ==
+                                            ThemeMode.light
+                                        ? Color(0xffD1DAD6)
+                                        : Colors.transparent,
+                              ),
                             ),
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              color: AppColor.primaryText,
-                              size: 25,
-                            ),
+                            child: Icon(Icons.camera_alt_outlined, size: 25),
                           ),
                         ),
                       ],
@@ -109,12 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             Text(
               "Profile Info",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: AppColor.primaryText,
-                fontFamily: 'poppins',
-              ),
+              style: Theme.of(context).appBarTheme.titleTextStyle,
             ),
             Gap(8),
             //user Details

@@ -4,7 +4,10 @@ import 'package:todo_app/core/util/color.dart';
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: Color(0xffF6F7F9),
-  colorScheme: ColorScheme.light(primaryContainer: Color(0xffFFFFFF)),
+  colorScheme: ColorScheme.light(
+    primaryContainer: Color(0xffFFFFFF),
+    secondary: AppColor.primaryText,
+  ),
   disabledColor: Color(0xff6A6A6A),
   hintColor: Color(0xff161F1B),
   primaryColorDark: Color(0xff3A4640),
@@ -148,4 +151,5 @@ ThemeData lightTheme = ThemeData(
       return 2;
     }),
   ),
+  iconTheme: IconThemeData(color: Color(0xff161F1B)),
 );
