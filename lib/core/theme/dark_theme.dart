@@ -13,7 +13,7 @@ ThemeData darkTheme = ThemeData(
   cardColor: Color(0xffA0A0A0),
   primaryColorDark: Color(0xffC6C6C6),
   primaryColor: Color(0xff282828),
-
+  listTileTheme: ListTileThemeData(),
   //check box theme
   checkboxTheme: CheckboxThemeData(
     checkColor: WidgetStateProperty.all(Colors.white),

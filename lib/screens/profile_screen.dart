@@ -156,12 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               title: Text(
                 "User Details",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
-                ),
+                style: TextTheme.of(context).titleMedium,
               ),
               leading: SvgPicture.asset(
                 "assets/images/profile.svg",
@@ -189,12 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               title: Text(
                 "Dark Mode",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
-                ),
+                style: TextTheme.of(context).titleMedium,
               ),
               leading: SvgPicture.asset(
                 "assets/images/moon.svg",
@@ -217,15 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 );
               },
 
-              title: Text(
-                "Log Out",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
-                ),
-              ),
+              title: Text("Log Out", style: TextTheme.of(context).titleMedium),
               leading: SvgPicture.asset(
                 "assets/images/logout.svg",
                 colorFilter: ColorFilter.mode(
