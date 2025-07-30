@@ -150,7 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               trailing: SvgPicture.asset(
                 "assets/images/arrow_back.svg",
                 colorFilter: ColorFilter.mode(
-                  Color(0xffC6C6C6),
+                  Theme.of(context).primaryColorDark,
                   BlendMode.srcIn,
                 ),
               ),
@@ -161,7 +161,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: SvgPicture.asset(
                 "assets/images/profile.svg",
                 colorFilter: ColorFilter.mode(
-                  AppColor.primaryText,
+                  Theme.of(context).colorScheme.primaryFixed,
                   BlendMode.srcIn,
                 ),
               ),
@@ -189,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: SvgPicture.asset(
                 "assets/images/moon.svg",
                 colorFilter: ColorFilter.mode(
-                  AppColor.primaryText,
+                  Theme.of(context).colorScheme.primaryFixed,
                   BlendMode.srcIn,
                 ),
               ),
@@ -211,14 +211,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: SvgPicture.asset(
                 "assets/images/logout.svg",
                 colorFilter: ColorFilter.mode(
-                  AppColor.primaryText,
+                  Theme.of(context).colorScheme.primaryFixed,
                   BlendMode.srcIn,
                 ),
               ),
               trailing: SvgPicture.asset(
                 "assets/images/arrow_back.svg",
                 colorFilter: ColorFilter.mode(
-                  Color(0xffC6C6C6),
+                  Theme.of(context).primaryColorDark,
                   BlendMode.srcIn,
                 ),
               ),

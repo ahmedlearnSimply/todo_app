@@ -7,6 +7,7 @@ ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.dark(
     primaryContainer: AppColor.surface,
     secondary: Color(0xff282828),
+    primaryFixed: Color(0xffFFFCFC),
   ),
   disabledColor: Color(0xffA0A0A0),
   hintColor: Color(0xffFFFCFC),

@@ -7,6 +7,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.light(
     primaryContainer: Color(0xffFFFFFF),
     secondary: AppColor.primaryText,
+    primaryFixed: Color(0xff161F1B),
   ),
   disabledColor: Color(0xff6A6A6A),
   hintColor: Color(0xff161F1B),
