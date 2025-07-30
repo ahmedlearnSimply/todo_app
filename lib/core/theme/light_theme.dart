@@ -38,6 +38,8 @@ ThemeData lightTheme = ThemeData(
       fontSize: 16,
     ),
     titleSmall: TextStyle(
+      overflow: TextOverflow.ellipsis,
+
       color: Color(0xff3A4640),
       fontFamily: 'poppins',
       fontWeight: FontWeight.w400,

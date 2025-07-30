@@ -42,16 +42,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 18.0),
+              padding: const EdgeInsets.all(18.0),
               child: Center(
                 child: Text(
                   "My Profile",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.primaryText,
-                    fontFamily: 'poppins',
-                  ),
+                  style: Theme.of(context).appBarTheme.titleTextStyle,
                 ),
               ),
             ),
@@ -97,12 +92,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Center(
               child: Text(
                 _name ?? "user",
-                style: TextStyle(
-                  overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).appBarTheme.titleTextStyle!.copyWith(
                   fontSize: 24,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.primaryText,
-                  fontFamily: 'poppins',
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
@@ -110,14 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Text(
                 _quote ?? "Don't Worry Every thing is will be good",
                 maxLines: 2,
-                style: TextStyle(
-                  overflow: TextOverflow.ellipsis,
-
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.secondaryText,
-                  fontFamily: 'poppins',
-                ),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
             Gap(24),

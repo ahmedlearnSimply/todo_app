@@ -33,6 +33,7 @@ ThemeData darkTheme = ThemeData(
       fontSize: 16,
     ),
     titleSmall: TextStyle(
+      overflow: TextOverflow.ellipsis,
       color: Color(0xffC6C6C6),
       fontFamily: 'poppins',
       fontWeight: FontWeight.w400,
