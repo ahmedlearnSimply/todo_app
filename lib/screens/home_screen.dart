@@ -6,6 +6,7 @@ import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/core/widgets/custom_svg_pic.dart';
 import 'package:todo_app/screens/add_task.dart';
 import 'package:todo_app/core/widgets/achieved_tasks_widget.dart';
 import 'package:todo_app/core/widgets/high_priority_tasks_widget.dart';
@@ -207,8 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "almost done ! ",
                                 style: Theme.of(context).textTheme.titleLarge,
                               ),
-                              SvgPicture.asset(
-                                "assets/images/waving_hand.svg",
+                              CustomSvgPic.withoutColor(
+                                assetName: "assets/images/waving_hand.svg",
                                 width: 32,
                                 height: 32,
                               ),

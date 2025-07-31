@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/core/widgets/custom_svg_pic.dart';
 import 'package:todo_app/main.dart';
 import 'package:todo_app/screens/user_details_screen.dart';
 import 'package:todo_app/screens/welcome_screen.dart';
@@ -151,24 +152,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   loadUserData();
                 },
                 contentPadding: EdgeInsets.zero,
-                trailing: SvgPicture.asset(
-                  "assets/images/arrow_back.svg",
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).primaryColorDark,
-                    BlendMode.srcIn,
-                  ),
+                trailing: CustomSvgPic(
+                  assetName: "assets/images/arrow_back.svg",
                 ),
+
                 title: Text(
                   "User Details",
                   style: TextTheme.of(context).titleMedium,
                 ),
-                leading: SvgPicture.asset(
-                  "assets/images/profile.svg",
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primaryFixed,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                leading: CustomSvgPic(assetName: "assets/images/profile.svg"),
               ),
               Divider(thickness: 1),
               //Dark Mode
@@ -190,13 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   "Dark Mode",
                   style: TextTheme.of(context).titleMedium,
                 ),
-                leading: SvgPicture.asset(
-                  "assets/images/moon.svg",
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primaryFixed,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                leading: CustomSvgPic(assetName: "assets/images/moon.svg"),
               ),
               Divider(thickness: 1),
               //Log out
@@ -215,19 +201,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   "Log Out",
                   style: TextTheme.of(context).titleMedium,
                 ),
-                leading: SvgPicture.asset(
-                  "assets/images/logout.svg",
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primaryFixed,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                trailing: SvgPicture.asset(
-                  "assets/images/arrow_back.svg",
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primaryFixed,
-                    BlendMode.srcIn,
-                  ),
+                leading: CustomSvgPic(assetName: "assets/images/logout.svg"),
+                trailing: CustomSvgPic(
+                  assetName: "assets/images/arrow_back.svg",
                 ),
               ),
             ],

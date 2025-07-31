@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/core/widgets/custom_svg_pic.dart';
 import 'package:todo_app/screens/high_priority_screen.dart';
 
 class HighPriorityTasksWidget extends StatefulWidget {
@@ -156,14 +157,8 @@ class _HighPriorityTasksWidgetState extends State<HighPriorityTasksWidget> {
 
                 child: Padding(
                   padding: const EdgeInsets.all(7.0),
-                  child: SvgPicture.asset(
-                    "assets/images/arrow2.svg",
-                    width: 10,
-                    height: 10,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).primaryColorDark,
-                      BlendMode.srcIn,
-                    ),
+                  child: CustomSvgPic.withoutColor(
+                    assetName: "assets/images/arrow2.svg",
                   ),
                 ),
               ),

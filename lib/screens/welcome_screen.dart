@@ -42,11 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                           CustomSvgPic.withoutColor(
                             assetName: "assets/images/logo.svg",
                           ),
-                          // SvgPicture.asset(
-                          //   "assets/images/logo.svg",
-                          //   height: 42,
-                          //   width: 42,
-                          // ),
+
                           Gap(16),
                           Text(
                             "Tasky",
@@ -65,11 +61,10 @@ class WelcomeScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                           Gap(8),
-
-                          SvgPicture.asset(
-                            "assets/images/waving_hand.svg",
-                            height: 42,
+                          CustomSvgPic.withoutColor(
+                            assetName: "assets/images/waving_hand.svg",
                             width: 42,
+                            height: 42,
                           ),
                         ],
                       ),
@@ -79,11 +74,10 @@ class WelcomeScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.displaySmall,
                       ),
                       Gap(24),
-                      SvgPicture.asset(
-                        "assets/images/person.svg",
-                        width: 216,
-                        height: 204,
+                      CustomSvgPic.withoutColor(
+                        assetName: "assets/images/person.svg",
                       ),
+
                       Gap(28),
                       Row(
                         children: [
