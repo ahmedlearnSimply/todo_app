@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isDarkMode = AppLocalStorage.getBool(AppLocalStorage.theme);
+  bool isDarkMode = AppLocalStorage.getBool(AppLocalStorage.theme) ?? true;
   String? username;
   String? motivationQuote;
   bool? kOnboarding;
