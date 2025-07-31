@@ -36,55 +36,19 @@ class _MainScreenState extends State<MainScreen> {
 
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                "assets/images/home.svg",
-                colorFilter:
-                    _currentIndex == 0
-                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
-                        ),
-              ),
+              icon: _buildSvgPicture("assets/images/home.svg", 0),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                "assets/images/todo.svg",
-                colorFilter:
-                    _currentIndex == 1
-                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
-                        ),
-              ),
+              icon: _buildSvgPicture("assets/images/todo.svg", 1),
               label: "To Do",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                "assets/images/completed.svg",
-                colorFilter:
-                    _currentIndex == 2
-                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
-                        ),
-              ),
+              icon: _buildSvgPicture("assets/images/completed.svg", 2),
               label: "Completed",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                "assets/images/profile.svg",
-                colorFilter:
-                    _currentIndex == 3
-                        ? ColorFilter.mode(AppColor.green, BlendMode.srcIn)
-                        : ColorFilter.mode(
-                          AppColor.primaryText,
-                          BlendMode.srcIn,
-                        ),
-              ),
+              icon: _buildSvgPicture("assets/images/profile.svg", 3),
               label: "Profile",
             ),
           ],
@@ -92,6 +56,22 @@ class _MainScreenState extends State<MainScreen> {
 
         body: SafeArea(child: screens[_currentIndex]),
       ),
+    );
+  }
+
+  SvgPicture _buildSvgPicture(String path, int index) {
+    return SvgPicture.asset(
+      path,
+      colorFilter:
+          _currentIndex == index
+              ? ColorFilter.mode(
+                Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+                BlendMode.srcIn,
+              )
+              : ColorFilter.mode(
+                Theme.of(context).primaryColorDark,
+                BlendMode.srcIn,
+              ),
     );
   }
 }
