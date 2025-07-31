@@ -33,12 +33,7 @@ class _MainScreenState extends State<MainScreen> {
               _currentIndex = index ?? 0;
             });
           },
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          backgroundColor: AppColor.background,
-          unselectedItemColor: AppColor.primaryText,
-          selectedItemColor: AppColor.green,
-          selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
+
           items: [
             BottomNavigationBarItem(
               icon: SvgPicture.asset(

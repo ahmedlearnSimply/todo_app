@@ -148,4 +148,13 @@ ThemeData darkTheme = ThemeData(
     selectionColor: const Color.fromARGB(255, 3, 156, 82),
     selectionHandleColor: const Color.fromARGB(255, 3, 156, 82),
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    elevation: 0,
+    backgroundColor: AppColor.background,
+    unselectedItemColor: AppColor.primaryText,
+    selectedItemColor: AppColor.green,
+    selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
+  ),
+  splashFactory: NoSplash.splashFactory,
 );

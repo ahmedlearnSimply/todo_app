@@ -159,4 +159,14 @@ ThemeData lightTheme = ThemeData(
   iconTheme: IconThemeData(color: Color(0xff161F1B)),
 
   dividerTheme: DividerThemeData(color: Color(0xffD1DAD6)),
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    elevation: 0,
+    backgroundColor: Color(0xffF6F7F9),
+    unselectedItemColor: Color(0xff3A4640),
+    selectedItemColor: Color(0xff14A662),
+    selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
+  ),
+  splashFactory: NoSplash.splashFactory,
 );
