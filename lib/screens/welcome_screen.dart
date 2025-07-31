@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/util/color.dart';
+import 'package:todo_app/core/widgets/custom_svg_pic.dart';
 import 'package:todo_app/core/widgets/custom_text_form.dart';
-import 'package:todo_app/screens/home_screen.dart';
 import 'package:todo_app/screens/main_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -39,11 +39,14 @@ class WelcomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
 
                         children: [
-                          SvgPicture.asset(
-                            "assets/images/logo.svg",
-                            height: 42,
-                            width: 42,
+                          CustomSvgPic.withoutColor(
+                            assetName: "assets/images/logo.svg",
                           ),
+                          // SvgPicture.asset(
+                          //   "assets/images/logo.svg",
+                          //   height: 42,
+                          //   width: 42,
+                          // ),
                           Gap(16),
                           Text(
                             "Tasky",

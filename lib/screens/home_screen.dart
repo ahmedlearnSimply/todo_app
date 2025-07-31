@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -8,7 +6,6 @@ import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/theme_controller.dart';
 import 'package:todo_app/core/util/color.dart';
-import 'package:todo_app/main.dart';
 import 'package:todo_app/screens/add_task.dart';
 import 'package:todo_app/core/widgets/achieved_tasks_widget.dart';
 import 'package:todo_app/core/widgets/high_priority_tasks_widget.dart';
@@ -41,10 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
     isDarkMode = AppLocalStorage.getBool(AppLocalStorage.theme) ?? true;
   }
 
-  void loadSavedData() async {
-    final name = await AppLocalStorage.getName();
-    final onboarding = await AppLocalStorage.getKOnboarding();
-    motivationQuote = await AppLocalStorage.getmotivationQuote();
+  void loadSavedData() {
+    final name = AppLocalStorage.getName();
+    final onboarding = AppLocalStorage.getKOnboarding();
+    motivationQuote = AppLocalStorage.getmotivationQuote();
     setState(() {
       username = name ?? "Guest";
       kOnboarding = onboarding ?? false;

@@ -19,9 +19,6 @@ void main() async {
   runApp(MainApp(isFirstTime: isFirstTime));
 }
 
-//for Dark mode
-// ValueNotifier<ThemeMode> valueNotifier = ValueNotifier(ThemeMode.dark);
-
 class MainApp extends StatelessWidget {
   final bool isFirstTime;
   MainApp({super.key, required this.isFirstTime});
