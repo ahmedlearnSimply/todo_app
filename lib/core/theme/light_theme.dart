@@ -169,4 +169,22 @@ ThemeData lightTheme = ThemeData(
     selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
   ),
   splashFactory: NoSplash.splashFactory,
+  popupMenuTheme: PopupMenuThemeData(
+    color: Color(0xffF6F7F9),
+
+    // shadowColor: Color(AppColor.green.toARGB32()),
+    elevation: 1,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+
+      side: BorderSide(color: AppColor.green, width: 1),
+    ),
+    labelTextStyle: WidgetStateProperty.all(
+      TextStyle(
+        color: AppColor.background,
+        fontFamily: 'poppins',
+        fontSize: 14,
+      ),
+    ),
+  ),
 );

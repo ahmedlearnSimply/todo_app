@@ -162,7 +162,11 @@ ThemeData darkTheme = ThemeData(
 
     // shadowColor: Color(AppColor.green.toARGB32()),
     elevation: 1,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+
+      side: BorderSide(color: AppColor.green, width: 1),
+    ),
     labelTextStyle: WidgetStateProperty.all(
       TextStyle(
         color: AppColor.primaryText,
