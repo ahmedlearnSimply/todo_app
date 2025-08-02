@@ -352,7 +352,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                             TaskItemEnum.values.map((e) {
                                               return PopupMenuItem(
                                                 value: e,
-                                                child: Text(e.name),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(e.name),
+                                                    Divider(),
+                                                  ],
+                                                ),
                                               );
                                             }).toList(),
                                     onSelected: (value) {
