@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/core/util/color.dart';
 import 'package:todo_app/screens/completed_tasks.dart';
 import 'package:todo_app/screens/home_screen.dart';
 import 'package:todo_app/screens/profile_screen.dart';
