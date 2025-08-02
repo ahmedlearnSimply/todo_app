@@ -157,4 +157,18 @@ ThemeData darkTheme = ThemeData(
     selectedLabelStyle: TextStyle(fontFamily: 'poppins', fontSize: 12),
   ),
   splashFactory: NoSplash.splashFactory,
+  popupMenuTheme: PopupMenuThemeData(
+    color: AppColor.background,
+
+    // shadowColor: Color(AppColor.green.toARGB32()),
+    elevation: 1,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    labelTextStyle: WidgetStateProperty.all(
+      TextStyle(
+        color: AppColor.primaryText,
+        fontFamily: 'poppins',
+        fontSize: 14,
+      ),
+    ),
+  ),
 );
