@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:todo_app/core/enum/task_item_enum.dart';
 import 'package:todo_app/core/models/task_model.dart';
 import 'package:todo_app/core/services/app_local_storage.dart';
 import 'package:todo_app/core/theme/theme_controller.dart';
@@ -345,9 +346,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
 
                                   Gap(12),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
+                                  PopupMenuButton<TaskItemEnum>(
+                                    itemBuilder:
+                                        (context) =>
+                                            TaskItemEnum.values.map((e) {
+                                              return PopupMenuItem(
+                                                value: e,
+                                                child: Text(e.name),
+                                              );
+                                            }).toList(),
+                                    onSelected: (value) {
+                                      switch (value) {
+                                        case TaskItemEnum.delete:
+                                          print("Delete");
+                                          break;
+                                        case TaskItemEnum.edit:
+                                          print("Edit");
+                                          break;
+                                        case TaskItemEnum.markAsDone:
+                                          print("Mark as Done");
+                                          break;
+                                      }
+                                    },
+                                    child: Icon(
                                       Icons.more_vert,
                                       color:
                                           allTasks[index].isDone
@@ -357,7 +378,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               ).primaryColorDark,
                                     ),
                                   ),
-                                  Gap(5),
+
+                                  Gap(20),
                                 ],
                               ),
                             ),
