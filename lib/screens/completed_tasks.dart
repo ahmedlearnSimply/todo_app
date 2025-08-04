@@ -42,6 +42,14 @@ class _CompletedTasksState extends State<CompletedTasks> {
     }
   }
 
+  void deleteTask(int id) async {
+    setState(() {
+      allTasks.removeWhere((task) => task.id == id);
+    });
+
+    await saveUpdatedTasks();
+  }
+
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(18.0),
@@ -58,6 +66,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: TasksItems(
+                onDelete: deleteTask,
                 isLoading: isLoading,
                 tasks: completedTasks,
                 onTap: (value, index) async {

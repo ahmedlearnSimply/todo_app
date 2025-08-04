@@ -47,6 +47,19 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
     }
   }
 
+  void deleteTask(int id) async {
+    setState(() {
+      allTasks.removeWhere((task) => task.id == id);
+    });
+
+    await saveUpdatedTasks();
+  }
+
+  Future<void> saveUpdatedTasks() async {
+    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
+    AppLocalStorage.setString('tasks', jsonEncode(updatedTasks));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -73,6 +86,7 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: TasksItems(
+                  onDelete: deleteTask,
                   isLoading: isLoading,
                   tasks: checkedTasks,
                   onTap: (value, index) async {

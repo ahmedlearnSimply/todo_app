@@ -43,6 +43,19 @@ class _TodoScreenState extends State<TodoScreen> {
     }
   }
 
+  void deleteTask(int id) async {
+    setState(() {
+      allTasks.removeWhere((task) => task.id == id);
+    });
+
+    await saveUpdatedTasks();
+  }
+
+  Future<void> saveUpdatedTasks() async {
+    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
+    AppLocalStorage.setString('tasks', jsonEncode(updatedTasks));
+  }
+
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(18.0),
@@ -60,6 +73,7 @@ class _TodoScreenState extends State<TodoScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: TasksItems(
+                onDelete: deleteTask,
                 isLoading: isLoading,
                 tasks: checkedTasks,
                 onTap: (value, index) async {
@@ -76,10 +90,5 @@ class _TodoScreenState extends State<TodoScreen> {
         ],
       ),
     );
-  }
-
-  Future<void> saveUpdatedTasks() async {
-    final updatedTasks = allTasks.map((element) => element.toJson()).toList();
-    AppLocalStorage.setString('tasks', jsonEncode(updatedTasks));
   }
 }

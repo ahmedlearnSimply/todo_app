@@ -15,7 +15,7 @@ class TasksItems extends StatefulWidget {
     required this.isLoading,
     required this.onTap,
     this.emptyMessage,
-    this.onDelete,
+    required this.onDelete,
   });
 
   List<TaskModel> tasks = [];
@@ -182,7 +182,7 @@ class _TasksItemsState extends State<TasksItems> {
                         print("Edit");
                         break;
                       case TaskItemEnum.delete:
-                        deleteTask(widget.tasks[index].id);
+                        widget.onDelete;
                         break;
                     }
                   },
