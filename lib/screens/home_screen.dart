@@ -91,6 +91,15 @@ class _HomeScreenState extends State<HomeScreen> {
     calculateIndicator();
   }
 
+  void deleteTask(int id) async {
+    setState(() {
+      allTasks.removeWhere((task) => task.id == id);
+      calculateIndicator();
+    });
+
+    await saveUpdatedTasks();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -375,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           print("Edit");
                                           break;
                                         case TaskItemEnum.delete:
-                                          print("Delete");
+                                          deleteTask(allTasks[index].id);
                                           break;
                                       }
                                     },
