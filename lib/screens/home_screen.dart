@@ -364,16 +364,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                               );
                                             }).toList(),
+                                    //!---------------4-8-2025-----------------//
                                     onSelected: (value) {
                                       switch (value) {
-                                        case TaskItemEnum.delete:
-                                          print("Delete");
+                                        case TaskItemEnum.markAsDone:
+                                          bool value = !allTasks[index].isDone;
+                                          doneTasks(value, index);
                                           break;
                                         case TaskItemEnum.edit:
                                           print("Edit");
                                           break;
-                                        case TaskItemEnum.markAsDone:
-                                          print("Mark as Done");
+                                        case TaskItemEnum.delete:
+                                          print("Delete");
                                           break;
                                       }
                                     },
