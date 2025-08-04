@@ -1,7 +1,7 @@
 enum TaskItemEnum {
-  delete(name: "Delete"),
+  markAsDone(name: "Mark as Done"),
   edit(name: "Edit"),
-  markAsDone(name: "Mark as Done");
+  delete(name: "Delete");
 
   final String name;
   const TaskItemEnum({required this.name});
